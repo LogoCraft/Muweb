@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kod Yaz & Link Al — Custom Domain Hazır</title>
+<style>
+  body{font-family:Inter,Arial,sans-serif;background:#0b1220;color:#e6eef6;margin:0;padding:18px}
+  h1{font-size:18px;margin:0 0 12px}
+  textarea{width:100%;height:360px;border-radius:8px;border:1px solid rgba(255,255,255,.06);background:#071022;color:#dff;padding:12px;font-family:ui-monospace,Menlo,Monaco,Consolas,'Courier New',monospace;font-size:13px}
+  .row{display:flex;gap:8px;margin-top:10px}
+  button{background:#2563eb;color:white;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+  input[type=text]{flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,.06);background:#071022;color:#dff}
+  .muted{font-size:13px;color:#9aa4b2;margin-top:10px}
+</style>
+</head>
+<body>
+  <h1>Kodunu Yapıştır — Link Oluştur (custom domain olur)</h1>
+  <textarea id="code" spellcheck="false"><h1>Merhaba Dünya</h1></textarea>
+
+  <div class="row">
+    <button id="btnCreate">Link Oluştur</button>
+    <button id="btnCopy">Kopyala</button>
+    <input type="text" id="out" placeholder="Oluşan link burada görünecek" readonly>
+  </div>
+
+  <div class="muted">
+    Not: Bu sayfayı yayınladığın domain ne ise üretilen link o domain ile başlar. (örn: https://benimsitem.com#v=...)
+  </div>
+
+<script>
+  // Basit, güvenilir: code -> base64 (URI-safe) -> hash "#v="
+  function encode(str){
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+  function decode(str){
+    return decodeURIComponent(escape(atob(str)));
+  }
+
+  const ta = document.getElementById('code'), out = document.getElementById('out');
+  document.getElementById('btnCreate').addEventListener('click', ()=>{
+    const val = ta.value || '';
+    const enc = encode(val);
+    // location.origin + location.pathname kullanıyoruz -> domain burada neyse link ona göre olur
+    const url = location.origin + location.pathname + '#v=' + enc;
+    out.value = url;
+  });
+
+  document.getElementById('btnCopy').addEventListener('click', async ()=>{
+    if(!out.value){ alert('Önce Link Oluştur'); return; }
+    try{
+      await navigator.clipboard.writeText(out.value);
+      const old = document.getElementById('btnCopy').textContent;
+      document.getElementById('btnCopy').textContent = 'Kopyalandı!';
+      setTimeout(()=> document.getElementById('btnCopy').textContent = old, 1200);
+    }catch(e){
+      prompt('Kopyala (manüel):', out.value);
+    }
+  });
+
+  // Eğer sayfa #v=... ile açıldıysa direkt sadece kodu göster
+  window.addEventListener('load', ()=>{
+    const h = location.hash || '';
+    if(h.startsWith('#v=')){
+      try{
+        const enc = h.slice(3);
+        const code = decode(enc);
+        // DOM'u tamamen temizleyip yalnızca kullanıcı kodunu yazıyoruz
+        document.documentElement.innerHTML = code;
+      }catch(e){
+        document.body.innerHTML = '<pre style="color:red;padding:20px">Kod çözülemedi veya geçersiz.</pre>';
+      }
+    }
+  });
+</script>
+</body>
+</html>
