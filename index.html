@@ -34,7 +34,6 @@ body{font-family:var(--font-body);font-size:15px;color:var(--gray700);background
 .hidden{display:none!important}
 img{max-width:100%}
 
-/* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:var(--radius);font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .18s ease;white-space:nowrap;text-decoration:none;line-height:1.4}
 .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 1px 2px rgba(37,99,235,.25)}
 .btn-primary:hover{background:var(--blue-hover);border-color:var(--blue-hover);box-shadow:0 4px 12px rgba(37,99,235,.3);transform:translateY(-1px)}
@@ -47,9 +46,7 @@ img{max-width:100%}
 .btn-sm{padding:6px 14px;font-size:13px}
 .btn-xs{padding:4px 10px;font-size:12px}
 .btn-full{width:100%;justify-content:center}
-.btn-icon{padding:8px;gap:0}
 
-/* ── NAVBAR ── */
 #navbar{background:var(--white);border-bottom:1px solid var(--gray200);position:sticky;top:0;z-index:200;padding:0}
 .nav-wrap{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;height:58px;gap:12px}
 .nav-logo{font-family:var(--font-head);font-size:20px;font-weight:800;color:var(--blue);cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:6px;flex-shrink:0}
@@ -68,14 +65,11 @@ img{max-width:100%}
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:var(--radius-sm);color:var(--gray600)}
 @media(max-width:640px){.nav-links{display:none}.hamburger{display:flex}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--gray200);padding:8px;z-index:300;box-shadow:var(--shadow-lg)}}
 
-/* ── LAYOUT ── */
 .page{display:none;min-height:calc(100vh - 58px);padding:32px 0 80px}
 .page.active{display:block}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
 .container-sm{max-width:760px;margin:0 auto;padding:0 20px}
-.container-xs{max-width:500px;margin:0 auto;padding:0 20px}
 
-/* ── HERO / UPLOAD ── */
 .hero-strip{background:linear-gradient(135deg,#eff6ff 0%,#f5f3ff 50%,#f0fdf4 100%);border-bottom:1px solid var(--gray200);padding:40px 0 0}
 .hero-inner{max-width:1200px;margin:0 auto;padding:0 20px;text-align:center}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--blue-border);color:var(--blue);padding:4px 14px;border-radius:999px;font-size:12px;font-weight:600;margin-bottom:16px;box-shadow:var(--shadow-sm)}
@@ -83,7 +77,6 @@ img{max-width:100%}
 .hero-title span{color:var(--blue)}
 .hero-sub{font-size:15px;color:var(--gray500);max-width:480px;margin:0 auto 28px}
 
-/* DROP ZONE */
 .upload-box{background:var(--white);border:2px dashed var(--gray300);border-radius:var(--radius-xl);padding:48px 32px;text-align:center;cursor:pointer;transition:all .2s;margin:0 auto;max-width:680px;position:relative}
 .upload-box:hover,.upload-box.drag-over{border-color:var(--blue);background:var(--blue-light)}
 .upload-box.drag-over{box-shadow:0 0 0 4px rgba(37,99,235,.1)}
@@ -95,11 +88,7 @@ img{max-width:100%}
 .upload-box p{font-size:13px;color:var(--gray400);margin-bottom:20px}
 .format-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:16px}
 .format-pill{background:var(--gray100);border:1px solid var(--gray200);padding:3px 10px;border-radius:999px;font-size:11px;color:var(--gray500);font-weight:500}
-.upload-tabs-bar{display:flex;justify-content:center;gap:0;background:var(--gray100);border-radius:var(--radius);padding:3px;margin:0 auto 20px;width:fit-content}
-.upload-tab-btn{padding:6px 18px;border-radius:8px;font-size:13px;font-weight:600;background:none;border:none;cursor:pointer;color:var(--gray500);font-family:var(--font-body);transition:all .15s}
-.upload-tab-btn.active{background:var(--white);color:var(--blue);box-shadow:var(--shadow-sm)}
 
-/* FILE QUEUE */
 .file-queue-wrap{max-width:680px;margin:16px auto 0;display:flex;flex-direction:column;gap:8px}
 .fq-item{background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius-lg);padding:12px 14px;display:flex;align-items:center;gap:12px;animation:slideUp .18s ease;box-shadow:var(--shadow-sm)}
 @keyframes slideUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -120,11 +109,9 @@ img{max-width:100%}
 .ua-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .ua-count{font-size:13px;color:var(--gray500)}
 
-/* UPLOAD OPTIONS ROW */
 .upload-opts-row{max-width:680px;margin:10px auto 0;display:flex;flex-wrap:wrap;gap:10px}
 .opt-chip{display:flex;align-items:center;gap:7px;padding:7px 14px;background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius);font-size:13px;cursor:pointer;transition:all .15s;user-select:none;font-family:var(--font-body)}
 .opt-chip:hover{border-color:var(--gray300)}
-.opt-chip.active{border-color:var(--blue-border);background:var(--blue-light);color:var(--blue)}
 select.opt-sel{background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius);font-size:13px;color:var(--gray700);padding:7px 10px;cursor:pointer;font-family:var(--font-body);outline:none;transition:border-color .15s}
 select.opt-sel:focus{border-color:var(--blue)}
 .toggle-sw{width:34px;height:18px;background:var(--gray300);border-radius:999px;position:relative;flex-shrink:0;transition:background .2s}
@@ -132,15 +119,12 @@ select.opt-sel:focus{border-color:var(--blue)}
 .toggle-sw.on{background:var(--blue)}
 .toggle-sw.on::after{left:18px}
 
-/* STATS ROW */
 .stats-row{display:flex;justify-content:center;gap:0;border-top:1px solid var(--gray200);margin-top:40px}
 .stat-cell{flex:1;max-width:200px;text-align:center;padding:20px;border-right:1px solid var(--gray200)}
 .stat-cell:last-child{border-right:none}
 .stat-n{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--gray900)}
 .stat-l{font-size:12px;color:var(--gray400);margin-top:2px}
-@media(max-width:480px){.stats-row{flex-wrap:wrap}.stat-cell{max-width:50%;border-bottom:1px solid var(--gray200)}}
 
-/* ── DASHBOARD (MY FILES) ── */
 .page-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px}
 .page-title{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--gray900)}
 .page-sub{font-size:14px;color:var(--gray400);margin-top:2px}
@@ -165,13 +149,10 @@ select.opt-sel:focus{border-color:var(--blue)}
 .file-card-body{padding:11px 13px}
 .fc-name{font-size:13px;font-weight:600;color:var(--gray800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px}
 .fc-meta{font-size:11px;color:var(--gray400);display:flex;justify-content:space-between;align-items:center}
-.fc-views{display:flex;align-items:center;gap:3px}
 .empty-state{text-align:center;padding:60px 20px;color:var(--gray400)}
 .empty-state svg{width:48px;height:48px;margin-bottom:14px;opacity:.4}
 .empty-state h4{font-size:16px;font-weight:600;color:var(--gray500);margin-bottom:6px}
-.empty-state p{font-size:14px}
 
-/* ── FILE VIEW PAGE ── */
 .fv-layout{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
 @media(max-width:860px){.fv-layout{grid-template-columns:1fr}}
 .fv-media-box{background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-md)}
@@ -183,7 +164,6 @@ select.opt-sel:focus{border-color:var(--blue)}
 .fv-filemeta{font-size:12px;color:var(--gray400)}
 .sidebar-card{background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius-lg);padding:16px;box-shadow:var(--shadow-sm);margin-bottom:12px}
 .sc-title{font-size:13px;font-weight:700;color:var(--gray700);margin-bottom:12px;display:flex;align-items:center;gap:6px}
-.sc-title svg{width:15px;height:15px;opacity:.7}
 .link-row{display:flex;gap:6px}
 .link-inp{flex:1;background:var(--gray50);border:1px solid var(--gray200);border-radius:var(--radius-sm);padding:8px 10px;font-size:12px;color:var(--gray600);font-family:var(--font-body);outline:none;min-width:0}
 .link-inp:focus{border-color:var(--blue)}
@@ -201,10 +181,9 @@ select.opt-sel:focus{border-color:var(--blue)}
 .share-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .share-btn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:var(--gray50);border:1px solid var(--gray200);border-radius:var(--radius);font-size:11px;font-weight:600;color:var(--gray600);cursor:pointer;transition:all .15s;text-decoration:none}
 .share-btn:hover{border-color:var(--gray300);background:var(--gray100)}
-.share-btn svg,.share-btn span{font-size:22px}
+.share-btn span{font-size:22px}
 .action-stack{display:flex;flex-direction:column;gap:6px}
 
-/* PASSWORD GATE */
 .pw-gate{background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius-xl);padding:48px 32px;max-width:400px;margin:60px auto;text-align:center;box-shadow:var(--shadow-lg)}
 .pw-gate-icon{width:64px;height:64px;border-radius:50%;background:var(--purple-light);border:1px solid #ddd6fe;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px}
 .pw-gate h3{font-family:var(--font-head);font-size:20px;font-weight:800;color:var(--gray900);margin-bottom:6px}
@@ -212,16 +191,7 @@ select.opt-sel:focus{border-color:var(--blue)}
 .pw-input-row{display:flex;gap:8px}
 .pw-input{flex:1;background:var(--gray50);border:1px solid var(--gray200);border-radius:var(--radius);padding:10px 12px;font-size:14px;color:var(--gray700);font-family:var(--font-body);outline:none;transition:border .15s}
 .pw-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
-.pw-input.err{border-color:var(--red)}
 
-/* EXPIRY BADGE */
-.exp-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600}
-.exp-badge.active{background:var(--green-light);color:var(--green);border:1px solid var(--green-border)}
-.exp-badge.soon{background:var(--orange-light);color:var(--orange);border:1px solid var(--orange-border)}
-.exp-badge.expired{background:var(--red-light);color:var(--red);border:1px solid var(--red-border)}
-.exp-badge.perm{background:var(--gray100);color:var(--gray500);border:1px solid var(--gray200)}
-
-/* ── AUTH MODAL ── */
 .overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
 .overlay.open{display:flex}
 .modal{background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius-xl);padding:36px 32px;width:100%;max-width:420px;box-shadow:var(--shadow-xl);animation:mIn .22s cubic-bezier(.34,1.56,.64,1);position:relative;max-height:92vh;overflow-y:auto}
@@ -246,44 +216,15 @@ select.opt-sel:focus{border-color:var(--blue)}
 .form-footer-row{display:flex;justify-content:flex-end;margin-bottom:8px}
 .forgot-lnk{font-size:12px;color:var(--blue);cursor:pointer;background:none;border:none;font-family:var(--font-body)}
 .forgot-lnk:hover{text-decoration:underline}
-.div-line{text-align:center;font-size:12px;color:var(--gray300);margin:16px 0;position:relative}
-.div-line::before,.div-line::after{content:'';position:absolute;top:50%;width:44%;height:1px;background:var(--gray200)}
-.div-line::before{left:0}.div-line::after{right:0}
-.google-btn-real{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:11px 20px;background:var(--white);border:1.5px solid var(--gray200);border-radius:var(--radius);cursor:pointer;font-family:var(--font-body);font-size:14px;font-weight:500;color:var(--gray700);transition:all .18s;box-shadow:var(--shadow-sm)}
-.google-btn-real:hover{border-color:var(--gray300);background:var(--gray50);box-shadow:var(--shadow-md);transform:translateY(-1px)}
 .terms-note{font-size:11px;color:var(--gray400);text-align:center;margin-top:16px}
 .terms-note a{color:var(--blue)}
 
-/* GOOGLE PICKER */
-.g-picker{background:var(--white);border-radius:22px;padding:32px 28px;max-width:380px;width:100%;box-shadow:0 25px 50px rgba(0,0,0,.2);animation:mIn .22s ease;text-align:center}
-.g-picker h3{font-size:22px;color:#202124;margin-bottom:6px;font-weight:400;font-family:Arial,sans-serif}
-.g-picker p{font-size:14px;color:#5f6368;margin-bottom:20px;font-family:Arial,sans-serif}
-.g-accounts{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
-.g-acc{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid #dadce0;border-radius:10px;cursor:pointer;transition:background .12s;text-align:left}
-.g-acc:hover{background:#f8f9fa}
-.g-acc-av{width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
-.g-acc-name{font-size:14px;font-weight:500;color:#202124;font-family:Arial,sans-serif}
-.g-acc-email{font-size:12px;color:#5f6368;font-family:Arial,sans-serif}
-.g-sep{display:flex;align-items:center;gap:8px;margin:10px 0}
-.g-sep::before,.g-sep::after{content:'';flex:1;height:1px;background:#dadce0}
-.g-sep span{font-size:12px;color:#5f6368;font-family:Arial,sans-serif}
-.g-field{width:100%;border:1px solid #dadce0;border-radius:8px;padding:10px 13px;font-size:14px;color:#202124;outline:none;font-family:Arial,sans-serif;margin-bottom:7px;transition:border .15s}
-.g-field:focus{border-color:#1a73e8;box-shadow:0 0 0 2px rgba(26,115,232,.15)}
-.g-continue{width:100%;padding:12px;background:#1a73e8;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;font-family:Arial,sans-serif;transition:background .15s;margin-top:4px}
-.g-continue:hover{background:#1557b0}
-.g-cancel{width:100%;padding:10px;background:transparent;color:#1a73e8;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-family:Arial,sans-serif;margin-top:5px}
-.g-cancel:hover{background:#f8f9fa}
-.g-privacy{font-size:11px;color:#80868b;margin-top:12px;font-family:Arial,sans-serif}
-.g-privacy a{color:#1a73e8;text-decoration:none}
-
-/* CONFIRM */
 .confirm-box{background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius-xl);padding:28px;max-width:340px;width:100%;box-shadow:var(--shadow-xl);animation:mIn .2s ease;text-align:center}
 .confirm-box h4{font-family:var(--font-head);font-size:18px;font-weight:800;color:var(--gray900);margin-bottom:6px}
 .confirm-box p{font-size:14px;color:var(--gray400);margin-bottom:22px}
 .confirm-actions{display:flex;gap:8px}
 .confirm-actions .btn{flex:1;justify-content:center}
 
-/* TOAST */
 #toast-wrap{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:340px}
 .toast{background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius-lg);padding:12px 16px;font-size:14px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-xl);animation:toastIn .22s ease;pointer-events:all;font-weight:500;color:var(--gray700)}
 @keyframes toastIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
@@ -291,7 +232,6 @@ select.opt-sel:focus{border-color:var(--blue)}
 .toast.err{border-left:3px solid var(--red)}
 .toast.warn{border-left:3px solid var(--orange)}
 
-/* PRICING */
 .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
 .pc{background:var(--white);border:1.5px solid var(--gray200);border-radius:var(--radius-xl);padding:28px 24px;display:flex;flex-direction:column;position:relative;transition:all .2s;box-shadow:var(--shadow-sm)}
 .pc:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
@@ -309,7 +249,6 @@ select.opt-sel:focus{border-color:var(--blue)}
 .pc-feats li.no::before{background:var(--gray200);color:var(--gray400);content:'✕'}
 .pc-cta{margin-top:22px;width:100%;justify-content:center}
 
-/* FEATURES */
 .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:16px}
 .feat-card{background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius-lg);padding:22px;transition:all .18s;box-shadow:var(--shadow-sm)}
 .feat-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
@@ -321,13 +260,11 @@ select.opt-sel:focus{border-color:var(--blue)}
 .feat-card h4{font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--gray900);margin-bottom:5px}
 .feat-card p{font-size:13px;color:var(--gray400);line-height:1.6}
 
-/* SECTION HEADER */
 .sec-head{text-align:center;margin-bottom:40px}
 .sec-head h2{font-family:var(--font-head);font-size:clamp(24px,4vw,38px);font-weight:800;color:var(--gray900);letter-spacing:-.5px;margin-bottom:8px}
 .sec-head p{font-size:15px;color:var(--gray400)}
 .sec-badge{display:inline-block;background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-border);padding:3px 14px;border-radius:999px;font-size:12px;font-weight:600;margin-bottom:12px}
 
-/* FOOTER */
 footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white)}
 .footer-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .footer-logo{font-family:var(--font-head);font-size:16px;font-weight:800;color:var(--blue)}
@@ -335,16 +272,10 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
 .footer-links a{color:var(--gray400);font-size:13px;text-decoration:none;transition:color .15s}
 .footer-links a:hover{color:var(--gray700)}
 .footer-copy{font-size:12px;color:var(--gray300)}
-
-/* SPINNING */
 .spin{animation:spinn 1s linear infinite;display:inline-block}
 @keyframes spinn{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-
-/* NOTE FORM */
 .note-input{width:100%;background:var(--gray50);border:1.5px solid var(--gray200);border-radius:var(--radius);padding:10px 12px;font-size:13px;color:var(--gray700);font-family:var(--font-body);outline:none;resize:vertical;min-height:80px;transition:border .15s}
 .note-input:focus{border-color:var(--blue);background:var(--white);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
-
-/* RESPONSIVE */
 @media(max-width:640px){
   .hero-strip{padding:28px 0 0}
   .upload-box{padding:32px 16px}
@@ -356,7 +287,6 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-wrap">
     <a class="nav-logo" onclick="showPage('home')">
@@ -390,7 +320,7 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
   </div>
 </nav>
 
-<!-- ══ PAGE: HOME ══ -->
+<!-- HOME -->
 <div id="home-page" class="page active">
   <div class="hero-strip">
     <div class="hero-inner">
@@ -399,12 +329,12 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
         Ücretsiz · Hızlı · Güvenli
       </div>
       <h1 class="hero-title">Dosyalarınızı anında <span>paylaşın</span></h1>
-      <p class="hero-sub">Resim ve videolarınızı yükleyin, kalıcı link alın, QR kodla paylaşın. Hesap açın, her zaman erişin.</p>
+      <p class="hero-sub">Resim ve videolarınızı yükleyin, kalıcı link alın, QR kodla paylaşın.</p>
     </div>
 
     <div class="container" style="padding-top:20px">
       <div id="auth-warn" class="hidden" style="max-width:680px;margin:0 auto 16px;background:var(--orange-light);border:1px solid var(--orange-border);border-radius:var(--radius);padding:10px 16px;font-size:13px;color:#7c2d12;display:flex;align-items:center;gap:8px">
-        ⚠️ Paylaşım için <strong style="margin:0 3px">kayıt olmanız</strong> gerekmektedir. 
+        ⚠️ Paylaşım için <strong style="margin:0 3px">kayıt olmanız</strong> gerekmektedir.
         <button class="btn btn-primary btn-xs" style="margin-left:auto" onclick="openModal('register')">Kayıt Ol</button>
       </div>
 
@@ -418,7 +348,7 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
         </div>
         <h3>Sürükle &amp; Bırak</h3>
-        <p>veya tıkla ve dosyalarını seç &mdash; Resim max 32 MB · Video max 100 MB</p>
+        <p>veya tıkla ve dosyalarını seç — Resim maks. 100 MB · Video maks. 500 MB</p>
         <button class="btn btn-primary" onclick="event.stopPropagation();document.getElementById('file-input').click()">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
           Dosya Seç
@@ -431,10 +361,8 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
         </div>
       </div>
 
-      <!-- FILE QUEUE -->
       <div class="file-queue-wrap" id="file-queue"></div>
 
-      <!-- UPLOAD OPTIONS -->
       <div id="upload-opts" class="hidden">
         <div class="upload-opts-row">
           <label class="opt-chip" id="privacy-chip" onclick="togglePrivacy()">
@@ -454,13 +382,13 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
             <span class="toggle-sw" id="pass-toggle"></span>
             🔒 Şifre Koru
           </label>
-          <input type="text" id="pass-inp" class="hidden" placeholder="Şifre gir…" style="background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius);padding:7px 12px;font-size:13px;outline:none;font-family:var(--font-body);color:var(--gray700)" onclick="event.stopPropagation()"/>
+          <input type="text" id="pass-inp" class="hidden" placeholder="Şifre gir…"
+            style="background:var(--white);border:1px solid var(--gray200);border-radius:var(--radius);padding:7px 12px;font-size:13px;outline:none;font-family:var(--font-body);color:var(--gray700)"
+            onclick="event.stopPropagation()"/>
         </div>
-
         <div id="note-opt-row" style="max-width:680px;margin:10px auto 0">
-          <textarea class="note-input" id="note-inp" placeholder="📝 Not ekle (opsiyonel) – paylaşım sayfasında gösterilir…"></textarea>
+          <textarea class="note-input" id="note-inp" placeholder="📝 Not ekle (opsiyonel)…"></textarea>
         </div>
-
         <div class="upload-actions-bar">
           <div class="ua-left">
             <span class="ua-count" id="ua-count"></span>
@@ -485,7 +413,7 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
   </div>
 </div>
 
-<!-- ══ PAGE: MY FILES ══ -->
+<!-- MY FILES -->
 <div id="myfiles-page" class="page">
   <div class="container">
     <div class="page-header">
@@ -512,7 +440,7 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
   </div>
 </div>
 
-<!-- ══ PAGE: FILE VIEW ══ -->
+<!-- FILE VIEW -->
 <div id="fileview-page" class="page">
   <div class="container">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px">
@@ -535,7 +463,6 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
           </div>
         </div>
         <div id="fv-note-display"></div>
-        <!-- Note edit (only for owner) -->
         <div id="fv-note-edit" class="sidebar-card hidden" style="margin-top:12px">
           <div class="sc-title">📝 Notunuzu Düzenleyin</div>
           <textarea class="note-input" id="fv-note-inp" placeholder="Not ekle…" style="margin-bottom:8px"></textarea>
@@ -565,7 +492,7 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
         <div class="sidebar-card" style="text-align:center">
           <div class="sc-title" style="justify-content:center">📱 QR Kod</div>
           <div class="qr-box">
-            <img id="qr-img" src="" alt="QR Kod" onerror="this.src='https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl='+encodeURIComponent(document.getElementById('fv-link-inp').value)"/>
+            <img id="qr-img" src="" alt="QR Kod"/>
           </div>
           <button class="btn btn-ghost btn-xs" style="margin-top:8px" onclick="downloadQR()">⬇ QR İndir</button>
         </div>
@@ -576,14 +503,14 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
         </div>
 
         <div class="action-stack">
-          <button class="btn btn-ghost btn-full" onclick="togglePrivacyView()">🔄 Gizlilik Değiştir</button>
+          <button class="btn btn-ghost btn-full" id="fv-privacy-btn" onclick="togglePrivacyView()">🔄 Gizlilik Değiştir</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══ PAGE: FEATURES ══ -->
+<!-- FEATURES -->
 <div id="features-page" class="page">
   <div class="container">
     <div class="sec-head">
@@ -592,19 +519,19 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
       <p>Hızlı, güvenli ve kullanımı kolay medya paylaşımı için her şey.</p>
     </div>
     <div class="feat-grid">
-      <div class="feat-card"><div class="feat-ic blue">⚡</div><h4>Anında CDN</h4><p>Resimleriniz ImgBB CDN'e yüklenir, kalıcı ve hızlı linkler alırsınız.</p></div>
+      <div class="feat-card"><div class="feat-ic blue">⚡</div><h4>Anında Yükleme</h4><p>Dosyalarınız tarayıcı deposuna anında kaydedilir, kalıcı linkler alırsınız.</p></div>
       <div class="feat-card"><div class="feat-ic purple">📱</div><h4>Gerçek QR Kod</h4><p>Her dosya için taranabilir QR kod üretilir, PNG olarak indirilebilir.</p></div>
       <div class="feat-card"><div class="feat-ic green">🔒</div><h4>Şifre Koruması</h4><p>Dosyalarınızı şifreyle koruyun, sadece şifreyi bilenler erişsin.</p></div>
-      <div class="feat-card"><div class="feat-ic orange">⏱</div><h4>Süre Kontrolü</h4><p>Sınırsız, 1 gün, 7 gün, 30 gün gibi süre seçenekleriyle paylaşın.</p></div>
+      <div class="feat-card"><div class="feat-ic orange">⏱</div><h4>Süre Kontrolü</h4><p>1 gün, 7 gün, 30 gün gibi süre seçenekleriyle paylaşın.</p></div>
       <div class="feat-card"><div class="feat-ic blue">📝</div><h4>Not Ekleme</h4><p>Dosyalarınıza not ekleyin, ziyaretçiler paylaşım sayfasında görsün.</p></div>
-      <div class="feat-card"><div class="feat-ic green">💾</div><h4>Kalıcı Depolama</h4><p>Sayfayı yeniledikten sonra bile dosyalarınız kaybolmaz.</p></div>
-      <div class="feat-card"><div class="feat-ic purple">📦</div><h4>Toplu Yükleme</h4><p>Birden fazla dosyayı aynı anda yükleyin.</p></div>
+      <div class="feat-card"><div class="feat-ic green">💾</div><h4>Kalıcı Depolama</h4><p>IndexedDB ile dosyalarınız tarayıcıda güvenle saklanır.</p></div>
+      <div class="feat-card"><div class="feat-ic purple">📦</div><h4>Toplu Yükleme</h4><p>Birden fazla dosyayı aynı anda yükleyin, 500 MB video desteği.</p></div>
       <div class="feat-card"><div class="feat-ic orange">📊</div><h4>Görüntülenme</h4><p>Dosyalarınızın kaç kez görüntülendiğini takip edin.</p></div>
     </div>
   </div>
 </div>
 
-<!-- ══ PAGE: PRICING ══ -->
+<!-- PRICING -->
 <div id="pricing-page" class="page">
   <div class="container">
     <div class="sec-head">
@@ -619,8 +546,8 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
         <div class="pc-price">₺0 <span>/ ay</span></div>
         <div class="pc-desc">Başlamak için mükemmel.</div>
         <ul class="pc-feats">
-          <li>10 GB depolama</li><li>Maks. 32 MB/resim</li>
-          <li>Resim &amp; video desteği</li><li>QR kod &amp; kalıcı link</li>
+          <li>10 GB depolama</li><li>Maks. 100 MB/resim</li>
+          <li>Resim &amp; video (500MB)</li><li>QR kod &amp; kalıcı link</li>
           <li>Şifre koruması</li><li>Not ekleme</li>
           <li class="no">Reklamsız deneyim</li><li class="no">API erişimi</li>
         </ul>
@@ -656,7 +583,7 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
   </div>
 </div>
 
-<!-- ══ AUTH MODAL ══ -->
+<!-- AUTH MODAL (Sadece e-posta/şifre — Google kaldırıldı) -->
 <div class="overlay" id="auth-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
@@ -686,9 +613,10 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
         <div class="form-err" id="lp-err">Şifre gerekli.</div>
       </div>
       <div class="form-footer-row">
-        <button class="forgot-lnk" onclick="showToast('📧 Şifre sıfırlama e-postası gönderildi.','ok')">Şifremi unuttum</button>
+        <button class="forgot-lnk" onclick="showForgotPw()">Şifremi unuttum</button>
       </div>
       <button class="btn btn-primary btn-full" onclick="doLogin()">Giriş Yap</button>
+      <p class="terms-note" style="margin-top:14px;color:var(--gray400)">Hesabınız yok mu? <a style="cursor:pointer;color:var(--blue)" onclick="switchTab('register')">Kayıt olun</a></p>
     </div>
 
     <!-- REGISTER -->
@@ -716,28 +644,6 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
       <button class="btn btn-primary btn-full" onclick="doRegister()">Kayıt Ol</button>
       <p class="terms-note">Kayıt olarak <a href="#">Kullanım Şartları</a>'nı kabul etmiş olursunuz.</p>
     </div>
-
-    <div class="div-line">veya</div>
-    <button class="google-btn-real" onclick="openGoogleModal()">
-      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-      Google ile Giriş Yap
-    </button>
-  </div>
-</div>
-
-<!-- GOOGLE PICKER MODAL -->
-<div class="overlay" id="google-overlay" onclick="if(event.target===this)closeGoogleModal()">
-  <div class="g-picker">
-    <div style="margin-bottom:14px"><svg width="38" height="38" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></div>
-    <h3>Google ile giriş yap</h3>
-    <p>HızlıMedi'ye erişmek için Google hesabınızı seçin</p>
-    <div class="g-accounts" id="g-accounts"></div>
-    <div class="g-sep"><span>veya yeni hesap</span></div>
-    <input type="email" class="g-field" id="g-email" placeholder="E-posta adresi"/>
-    <input type="text" class="g-field" id="g-name" placeholder="Ad Soyad"/>
-    <button class="g-continue" onclick="continueGoogle()">Devam Et</button>
-    <button class="g-cancel" onclick="closeGoogleModal()">İptal</button>
-    <p class="g-privacy"><a href="#">Gizlilik Politikası</a> · <a href="#">Hizmet Şartları</a></p>
   </div>
 </div>
 
@@ -753,7 +659,7 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
   </div>
 </div>
 
-<!-- PASSWORD GATE (inline) -->
+<!-- PASSWORD GATE -->
 <div class="overlay hidden" id="pw-overlay">
   <div class="pw-gate">
     <div class="pw-gate-icon">
@@ -787,49 +693,43 @@ footer{border-top:1px solid var(--gray200);padding:24px 0;background:var(--white
 <script>
 'use strict';
 
-/* ══════════════════════════════════════════
-   CONSTANTS & STATE
-══════════════════════════════════════════ */
-const USERS_KEY   = 'hm_users_v2';
-const SESSION_KEY = 'hm_session_v2';
-const FILES_KEY   = 'hm_files_v2';    // all files (IndexedDB fallback to localStorage)
-const IMGBB_KEY   = 'a0eb3b7fa0b7f72d3dace29e4e1c0e0f';
+/* ══ CONSTANTS ══ */
+const USERS_KEY   = 'hm_users_v3';
+const SESSION_KEY = 'hm_session_v3';
 
-const MAX_IMG = 32 * 1024 * 1024;
-const MAX_VID = 100 * 1024 * 1024;
-const ALLOWED = ['image/jpeg','image/png','image/webp','image/gif','image/bmp',
-                 'video/mp4','video/webm','video/ogg','video/quicktime','video/x-msvideo'];
+/* ══ FIX 1: Büyütülmüş boyut limitleri ══ */
+const MAX_IMG = 100 * 1024 * 1024;   // 100 MB resim
+const MAX_VID = 500 * 1024 * 1024;   // 500 MB video
 
-let queue       = [];         // files waiting to be uploaded
+const ALLOWED_TYPES = [
+  'image/jpeg','image/png','image/webp','image/gif','image/bmp',
+  'video/mp4','video/webm','video/ogg','video/quicktime','video/x-msvideo'
+];
+
+let queue       = [];
 let isPrivate   = false;
 let usePassword = false;
 let uploading   = false;
 let confirmCb   = null;
 let currentFileId = null;
 let prevPage    = 'home';
+let pendingUpload = false;
+let pendingFileView = null;
 
-/* ══════════════════════════════════════════
-   INDEXED-DB STORAGE (for blob thumbnails)
-   Falls back to storing metadata in localStorage
-   Actual blobs are stored as base64 in IndexedDB
-══════════════════════════════════════════ */
+/* ══ INDEXED-DB ══ */
 let db = null;
 
 function openDB() {
   return new Promise((res, rej) => {
     if (db) return res(db);
-    const req = indexedDB.open('hizlimedi', 2);
+    const req = indexedDB.open('hizlimedi_v3', 1);
     req.onupgradeneeded = e => {
       const d = e.target.result;
-      if (!d.objectStoreNames.contains('files')) {
-        d.createObjectStore('files', { keyPath: 'id' });
-      }
-      if (!d.objectStoreNames.contains('blobs')) {
-        d.createObjectStore('blobs', { keyPath: 'id' });
-      }
+      if (!d.objectStoreNames.contains('files')) d.createObjectStore('files', { keyPath:'id' });
+      if (!d.objectStoreNames.contains('blobs')) d.createObjectStore('blobs', { keyPath:'id' });
     };
     req.onsuccess = e => { db = e.target.result; res(db); };
-    req.onerror   = e => rej(e);
+    req.onerror   = () => rej(new Error('IndexedDB açılamadı'));
   });
 }
 
@@ -837,10 +737,8 @@ async function dbPut(store, obj) {
   const d = await openDB();
   return new Promise((res, rej) => {
     const tx = d.transaction(store, 'readwrite');
-    const st = tx.objectStore(store);
-    const r  = st.put(obj);
-    r.onsuccess = () => res(r.result);
-    r.onerror   = () => rej(r.error);
+    tx.objectStore(store).put(obj).onsuccess = e => res(e.target.result);
+    tx.onerror = () => rej(tx.error);
   });
 }
 
@@ -848,9 +746,8 @@ async function dbGet(store, key) {
   const d = await openDB();
   return new Promise((res, rej) => {
     const tx = d.transaction(store, 'readonly');
-    const st = tx.objectStore(store);
-    const r  = st.get(key);
-    r.onsuccess = () => res(r.result);
+    const r  = tx.objectStore(store).get(key);
+    r.onsuccess = () => res(r.result || null);
     r.onerror   = () => rej(r.error);
   });
 }
@@ -859,8 +756,7 @@ async function dbGetAll(store) {
   const d = await openDB();
   return new Promise((res, rej) => {
     const tx = d.transaction(store, 'readonly');
-    const st = tx.objectStore(store);
-    const r  = st.getAll();
+    const r  = tx.objectStore(store).getAll();
     r.onsuccess = () => res(r.result);
     r.onerror   = () => rej(r.error);
   });
@@ -870,58 +766,86 @@ async function dbDelete(store, key) {
   const d = await openDB();
   return new Promise((res, rej) => {
     const tx = d.transaction(store, 'readwrite');
-    const st = tx.objectStore(store);
-    const r  = st.delete(key);
-    r.onsuccess = () => res();
-    r.onerror   = () => rej(r.error);
+    tx.objectStore(store).delete(key).onsuccess = () => res();
+    tx.onerror = () => rej(tx.error);
   });
 }
 
-/* ══════════════════════════════════════════
-   USER / SESSION
-══════════════════════════════════════════ */
+/* ══ FIX 2: Blob'u doğrudan sakla (base64 dönüşümü YOK — büyük dosyalar çökmüyor) ══ */
+async function saveBlob(id, blob) {
+  await dbPut('blobs', { id, blob });
+}
+
+async function getBlob(id) {
+  const r = await dbGet('blobs', id);
+  if (!r || !r.blob) return null;
+  return r.blob; // Blob nesnesi
+}
+
+async function getBlobUrl(id) {
+  const blob = await getBlob(id);
+  if (!blob) return null;
+  return URL.createObjectURL(blob);
+}
+
+/* ══ FILE META ══ */
+async function saveFileMeta(meta) { await dbPut('files', meta); }
+async function getAllFiles(uid)   { const a = await dbGetAll('files'); return a.filter(f => f.ownerId === uid); }
+async function getFile(id)        { return await dbGet('files', id); }
+async function deleteFile(id)     { await dbDelete('files', id); await dbDelete('blobs', id); }
+
+/* ══ EXPIRY ══ */
+function calcExpiry(days) {
+  if (!days || days == 0) return null;
+  const d = new Date(); d.setDate(d.getDate() + parseInt(days)); return d.toISOString();
+}
+function isExpired(f) { return f.expiresAt ? new Date() > new Date(f.expiresAt) : false; }
+function expiryText(f) {
+  if (isExpired(f)) return '🔴 Süresi doldu';
+  if (!f.expiresAt)  return '♾️ Sınırsız';
+  const diff = Math.ceil((new Date(f.expiresAt) - new Date()) / 86400000);
+  return diff <= 1 ? `🟠 ${diff} gün kaldı` : `🟢 ${diff} gün kaldı`;
+}
+
+/* ══ USER / SESSION ══ */
 function getUsers()    { try { return JSON.parse(localStorage.getItem(USERS_KEY)||'[]'); } catch { return []; } }
 function saveUsers(u)  { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
 function getSession()  { try { return JSON.parse(sessionStorage.getItem(SESSION_KEY)||'null'); } catch { return null; } }
 function saveSession(s){ sessionStorage.setItem(SESSION_KEY, JSON.stringify(s)); }
 function clearSession(){ sessionStorage.removeItem(SESSION_KEY); }
 
+function hashPass(p) { return btoa(unescape(encodeURIComponent(p))); }
+
 function register(name, email, pass) {
   const users = getUsers();
   if (users.find(u => u.email.toLowerCase() === email.toLowerCase())) return null;
-  const u = { id:'u_'+Date.now()+'_'+rndId(), name:name.trim(), email:email.toLowerCase().trim(),
-    ph: btoa(unescape(encodeURIComponent(pass))), provider:'email', plan:'free' };
+  const u = {
+    id: 'u_'+Date.now()+'_'+rndId(),
+    name: name.trim(),
+    email: email.toLowerCase().trim(),
+    ph: hashPass(pass),
+    plan: 'free'
+  };
   users.push(u); saveUsers(users);
   return { id:u.id, name:u.name, email:u.email, plan:u.plan };
 }
 
 function login(email, pass) {
   const users = getUsers();
-  const hash  = btoa(unescape(encodeURIComponent(pass)));
-  const u = users.find(u => u.email.toLowerCase() === email.toLowerCase().trim() && u.ph === hash);
+  const u = users.find(u =>
+    u.email.toLowerCase() === email.toLowerCase().trim() && u.ph === hashPass(pass)
+  );
   if (!u) return null;
   return { id:u.id, name:u.name, email:u.email, plan:u.plan };
 }
 
-function googleAuth(name, email) {
-  const users = getUsers();
-  let u = users.find(u => u.email.toLowerCase() === email.toLowerCase().trim());
-  if (!u) {
-    u = { id:'u_'+Date.now()+'_'+rndId(), name:name.trim(), email:email.toLowerCase().trim(),
-      ph:null, provider:'google', plan:'free' };
-    users.push(u); saveUsers(users);
-  }
-  return { id:u.id, name:u.name, email:u.email, plan:u.plan };
-}
-
 function onAuth(session, msg) {
-  saveSession(session); updateNavbar(session); closeModal(); closeGoogleModal();
+  saveSession(session);
+  updateNavbar(session);
+  closeModal();
   showToast(msg, 'ok');
-  // show my files for authenticated users
   if (pendingUpload) { pendingUpload = false; startUpload(); }
 }
-
-let pendingUpload = false;
 
 function doLogout() {
   clearSession(); updateNavbar(null);
@@ -933,117 +857,49 @@ function updateNavbar(session) {
   const gEl = document.getElementById('nav-guest');
   const uEl = document.getElementById('nav-user');
   if (session) {
-    gEl.classList.add('hidden'); uEl.classList.remove('hidden');
+    gEl.classList.add('hidden');
+    uEl.classList.remove('hidden');
     const init = session.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-    document.getElementById('nav-av').textContent = init;
-    document.getElementById('nav-uname').textContent = session.name;
-    document.getElementById('nav-plan-badge').textContent = session.plan === 'pro' ? 'Pro' : 'Ücretsiz';
+    document.getElementById('nav-av').textContent     = init;
+    document.getElementById('nav-uname').textContent  = session.name;
+    document.getElementById('nav-plan-badge').textContent = session.plan==='pro'?'Pro':'Ücretsiz';
     document.getElementById('auth-warn').classList.add('hidden');
   } else {
-    gEl.classList.remove('hidden'); uEl.classList.add('hidden');
+    gEl.classList.remove('hidden');
+    uEl.classList.add('hidden');
   }
 }
 
-/* ══════════════════════════════════════════
-   FILE STORAGE (IndexedDB)
-══════════════════════════════════════════ */
-async function saveFileMeta(meta) {
-  await dbPut('files', meta);
-}
-
-async function getAllFiles(userId) {
-  const all = await dbGetAll('files');
-  return all.filter(f => f.ownerId === userId);
-}
-
-async function getFile(id) {
-  return await dbGet('files', id);
-}
-
-async function deleteFile(id) {
-  await dbDelete('files', id);
-  await dbDelete('blobs', id);
-}
-
-async function saveBlobData(id, dataUrl) {
-  await dbPut('blobs', { id, dataUrl });
-}
-
-async function getBlobData(id) {
-  const r = await dbGet('blobs', id);
-  return r ? r.dataUrl : null;
-}
-
-/* ══════════════════════════════════════════
-   EXPIRY HELPERS
-══════════════════════════════════════════ */
-function calcExpiry(days) {
-  if (!days || days == 0) return null; // unlimited
-  const d = new Date();
-  d.setDate(d.getDate() + parseInt(days));
-  return d.toISOString();
-}
-
-function isExpired(meta) {
-  if (!meta.expiresAt) return false;
-  return new Date() > new Date(meta.expiresAt);
-}
-
-function expiryText(meta) {
-  if (isExpired(meta)) return '🔴 Süresi doldu';
-  if (!meta.expiresAt)  return '♾️ Sınırsız';
-  const d = new Date(meta.expiresAt);
-  const diff = Math.ceil((d - new Date()) / 86400000);
-  if (diff <= 1) return `🟠 ${diff} gün kaldı`;
-  return `🟢 ${diff} gün kaldı`;
-}
-
-function expiryBadgeClass(meta) {
-  if (isExpired(meta))   return 'expired';
-  if (!meta.expiresAt)   return 'perm';
-  const diff = Math.ceil((new Date(meta.expiresAt) - new Date()) / 86400000);
-  return diff <= 2 ? 'soon' : 'active';
-}
-
-/* ══════════════════════════════════════════
-   NAVIGATION
-══════════════════════════════════════════ */
-function showPage(name, fromPage) {
-  if (fromPage) prevPage = fromPage;
+/* ══ NAVIGATION ══ */
+function showPage(name, from) {
+  if (from) prevPage = from;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pg = document.getElementById(name+'-page');
   if (pg) pg.classList.add('active');
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.page === name));
-  window.scrollTo({ top:0, behavior:'smooth' });
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.page===name));
+  window.scrollTo({top:0,behavior:'smooth'});
   document.getElementById('nav-links').classList.remove('open');
-
-  if (name === 'myfiles') loadMyFiles();
+  if (name==='myfiles') loadMyFiles();
 }
-
-function goBack() {
-  showPage(prevPage || 'home');
-}
-
+function goBack() { showPage(prevPage||'home'); }
 function toggleMenu() { document.getElementById('nav-links').classList.toggle('open'); }
 
-/* ══════════════════════════════════════════
-   MODAL
-══════════════════════════════════════════ */
+/* ══ AUTH MODAL ══ */
 function openModal(tab) {
   clearFormErrs();
   document.getElementById('auth-overlay').classList.add('open');
-  switchTab(tab || 'login');
+  switchTab(tab||'login');
 }
 function closeModal() { document.getElementById('auth-overlay').classList.remove('open'); }
 
 function switchTab(tab) {
-  const isL = tab === 'login';
+  const isL = tab==='login';
   document.getElementById('tab-login').classList.toggle('active', isL);
   document.getElementById('tab-register').classList.toggle('active', !isL);
   document.getElementById('login-form').classList.toggle('hidden', !isL);
   document.getElementById('register-form').classList.toggle('hidden', isL);
   document.getElementById('modal-title').textContent = isL ? 'Hoş Geldiniz 👋' : 'Hesap Oluştur 🚀';
-  document.getElementById('modal-sub').textContent = isL ? 'Devam etmek için giriş yapın' : 'Ücretsiz hesabını oluştur';
+  document.getElementById('modal-sub').textContent   = isL ? 'Devam etmek için giriş yapın' : 'Ücretsiz hesabını oluştur';
   clearFormErrs();
 }
 
@@ -1051,9 +907,10 @@ function clearFormErrs() {
   document.querySelectorAll('.form-err').forEach(e => e.classList.remove('show'));
   document.querySelectorAll('.err-field').forEach(e => e.classList.remove('err-field'));
 }
-function setErr(id, errId, msg) {
-  document.getElementById(id)?.classList.add('err-field');
-  const e = document.getElementById(errId); if(e){ e.textContent=msg||e.textContent; e.classList.add('show'); }
+function setErr(inputId, errId, msg) {
+  document.getElementById(inputId)?.classList.add('err-field');
+  const e = document.getElementById(errId);
+  if (e) { e.textContent = msg||e.textContent; e.classList.add('show'); }
   return false;
 }
 function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim()); }
@@ -1078,76 +935,61 @@ function doRegister() {
   const pw = document.getElementById('rp').value;
   const p2 = document.getElementById('rp2').value;
   let ok = true;
-  if (na.trim().length < 2) ok = setErr('rn','rn-err','En az 2 karakter.');
-  if (!validEmail(em)) ok = setErr('re','re-err','Geçerli e-posta girin.');
-  if (pw.length < 8) ok = setErr('rp','rp-err','En az 8 karakter.');
-  if (pw !== p2) ok = setErr('rp2','rp2-err','Şifreler eşleşmiyor.');
+  if (na.trim().length < 2)   ok = setErr('rn','rn-err','En az 2 karakter.');
+  if (!validEmail(em))        ok = setErr('re','re-err','Geçerli e-posta girin.');
+  if (pw.length < 8)          ok = setErr('rp','rp-err','En az 8 karakter.');
+  if (pw !== p2)              ok = setErr('rp2','rp2-err','Şifreler eşleşmiyor.');
   if (!ok) return;
   const s = register(na, em, pw);
   if (!s) { showToast('❌ Bu e-posta zaten kayıtlı.','err'); return; }
   onAuth(s, '🎉 Hoş geldin, '+s.name.split(' ')[0]+'!');
 }
 
-/* GOOGLE */
-function openGoogleModal() {
-  closeModal();
-  const users = getUsers().filter(u => u.provider === 'google');
-  const list  = document.getElementById('g-accounts');
-  list.innerHTML = '';
-  users.forEach(u => {
-    const init = u.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-    const item = document.createElement('div');
-    item.className = 'g-acc';
-    item.innerHTML = `<div class="g-acc-av">${init}</div><div><div class="g-acc-name">${h(u.name)}</div><div class="g-acc-email">${h(u.email)}</div></div>`;
-    item.onclick = () => onAuth({id:u.id,name:u.name,email:u.email,plan:u.plan},'✅ Hoş geldin!');
-    list.appendChild(item);
-  });
-  document.getElementById('g-email').value = '';
-  document.getElementById('g-name').value  = '';
-  document.getElementById('google-overlay').classList.add('open');
-}
-function closeGoogleModal() { document.getElementById('google-overlay').classList.remove('open'); }
-function continueGoogle() {
-  const em = document.getElementById('g-email').value.trim();
-  const na = document.getElementById('g-name').value.trim();
-  if (!validEmail(em)) { showToast('❌ Geçerli e-posta girin.','err'); return; }
-  if (na.length < 2)   { showToast('❌ Ad en az 2 karakter.','err'); return; }
-  const s = googleAuth(na, em);
-  onAuth(s, '✅ Google ile giriş yapıldı!');
+/* ══ FIX 3: Şifre sıfırlama (sahte değil, gerçek kullanıcı bilgisi) ══ */
+function showForgotPw() {
+  const em = document.getElementById('le').value.trim();
+  if (!validEmail(em)) {
+    showToast('⚠️ Önce e-posta adresi girin.','warn');
+    return;
+  }
+  const users = getUsers();
+  const u = users.find(x => x.email === em.toLowerCase());
+  if (!u) {
+    showToast('❌ Bu e-posta kayıtlı değil.','err');
+  } else {
+    showToast('ℹ️ Bu bir demo uygulamadır. Şifrenizi sistem yöneticisinden alabilirsiniz.','warn');
+  }
 }
 
-/* CONFIRM */
+/* ══ CONFIRM ══ */
 function openConfirm(title, msg, cb) {
   document.getElementById('confirm-title').textContent = title;
   document.getElementById('confirm-msg').textContent   = msg;
   confirmCb = cb;
   document.getElementById('confirm-overlay').classList.add('open');
 }
-function closeConfirm() { document.getElementById('confirm-overlay').classList.remove('open'); confirmCb = null; }
+function closeConfirm() { document.getElementById('confirm-overlay').classList.remove('open'); confirmCb=null; }
 function runConfirm()   { closeConfirm(); if (confirmCb) confirmCb(); }
 
-/* ══════════════════════════════════════════
-   DRAG & DROP / FILE INPUT
-══════════════════════════════════════════ */
+/* ══ DRAG & DROP ══ */
 function triggerInput(e) {
-  if (e.target.closest('button') || e.target.closest('select') || e.target.closest('input')) return;
+  if (e.target.closest('button')||e.target.closest('select')||e.target.closest('input')||e.target.closest('textarea')) return;
   document.getElementById('file-input').click();
 }
 function doDragOver(e)  { e.preventDefault(); document.getElementById('drop-zone').classList.add('drag-over'); }
 function doDragLeave(e) { if (!document.getElementById('drop-zone').contains(e.relatedTarget)) document.getElementById('drop-zone').classList.remove('drag-over'); }
 function doDrop(e)      { e.preventDefault(); document.getElementById('drop-zone').classList.remove('drag-over'); addToQueue([...e.dataTransfer.files]); }
-function handleFiles(e) { addToQueue([...e.target.files]); e.target.value = ''; }
+function handleFiles(e) { addToQueue([...e.target.files]); e.target.value=''; }
 
 function addToQueue(files) {
   let added = 0;
   files.forEach(file => {
     const isVid = file.type.startsWith('video/');
-    const max   = isVid ? MAX_VID : MAX_IMG;
-    if (!ALLOWED.some(t => file.type === t) && !file.type.startsWith('image/') && !file.type.startsWith('video/')) {
-      showToast('❌ '+h(file.name)+' desteklenmiyor.','err'); return;
-    }
-    if (file.size > max) {
-      showToast('❌ '+h(file.name)+' çok büyük.','err'); return;
+    const isImg = file.type.startsWith('image/');
+    if (!isVid && !isImg) { showToast('❌ '+h(file.name)+': desteklenmiyor.','err'); return; }
+    const maxSize = isVid ? MAX_VID : MAX_IMG;
+    if (file.size > maxSize) {
+      showToast(`❌ ${h(file.name)}: ${isVid?'500 MB':'100 MB'} limitini aşıyor.`,'err'); return;
     }
     const id  = 'fq_'+Date.now()+'_'+rndId();
     const url = URL.createObjectURL(file);
@@ -1166,9 +1008,10 @@ function renderQueueItem(f) {
   const el   = document.createElement('div');
   el.className = 'fq-item'; el.id = 'fq-'+f.id;
   el.innerHTML = `
-    <div class="fq-thumb">${f.isVid
-      ? `<video src="${f.url}" muted preload="metadata"></video>`
-      : `<img src="${f.url}" alt="${h(f.file.name)}"/>`}
+    <div class="fq-thumb">
+      ${f.isVid
+        ? `<video src="${f.url}" muted preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>`
+        : `<img src="${f.url}" alt="${h(f.file.name)}" style="width:100%;height:100%;object-fit:cover"/>`}
     </div>
     <div class="fq-info">
       <div class="fq-name" title="${h(f.file.name)}">${h(f.file.name)}</div>
@@ -1185,11 +1028,10 @@ function renderQueueItem(f) {
 
 function removeQueueItem(id) {
   if (uploading) return;
-  const f = queue.find(x => x.id === id);
+  const f = queue.find(x => x.id===id);
   if (f) URL.revokeObjectURL(f.url);
-  queue = queue.filter(x => x.id !== id);
-  const el = document.getElementById('fq-'+id);
-  if (el) el.remove();
+  queue = queue.filter(x => x.id!==id);
+  document.getElementById('fq-'+id)?.remove();
   if (!queue.length) document.getElementById('upload-opts').classList.add('hidden');
   else updateQueueCount();
 }
@@ -1203,8 +1045,8 @@ function clearQueue() {
 }
 
 function updateQueueCount() {
-  const n = queue.filter(f => f.status === 'queued').length;
-  document.getElementById('ua-count').textContent = n + ' dosya seçildi';
+  const n = queue.filter(f => f.status==='queued').length;
+  document.getElementById('ua-count').textContent = n+' dosya seçildi';
 }
 
 function togglePrivacy() {
@@ -1219,35 +1061,8 @@ function togglePassOption() {
   document.getElementById('pass-inp').classList.toggle('hidden', !usePassword);
 }
 
-/* ══════════════════════════════════════════
-   IMGBB UPLOAD
-══════════════════════════════════════════ */
-async function uploadToImgBB(file) {
-  const fd = new FormData();
-  fd.append('image', file);
-  fd.append('key', IMGBB_KEY);
-  const res = await fetch('https://api.imgbb.com/1/upload', { method:'POST', body:fd });
-  if (!res.ok) throw new Error('ImgBB '+res.status);
-  const data = await res.json();
-  if (!data.success) throw new Error(data.error?.message || 'Yükleme başarısız');
-  return { cdnUrl: data.data.url, viewerUrl: data.data.url_viewer, thumbUrl: data.data.thumb?.url || data.data.url };
-}
-
-/* file → base64 for IndexedDB storage */
-function fileToBase64(file) {
-  return new Promise((res, rej) => {
-    const reader = new FileReader();
-    reader.onload  = () => res(reader.result);
-    reader.onerror = () => rej(reader.error);
-    reader.readAsDataURL(file);
-  });
-}
-
-/* ══════════════════════════════════════════
-   UPLOAD FLOW
-══════════════════════════════════════════ */
+/* ══ FIX 4: UPLOAD — Blob doğrudan IndexedDB'ye, ImgBB opsiyonel ══ */
 async function startUpload() {
-  // Auth gate
   const session = getSession();
   if (!session) {
     pendingUpload = true;
@@ -1258,7 +1073,7 @@ async function startUpload() {
   }
 
   if (uploading) return;
-  const todo = queue.filter(f => f.status === 'queued');
+  const todo = queue.filter(f => f.status==='queued');
   if (!todo.length) { showToast('⚠️ Dosya seçilmedi.','warn'); return; }
 
   uploading = true;
@@ -1278,26 +1093,24 @@ async function startUpload() {
     const stEl  = document.getElementById('st-'+f.id);
     const barEl = document.getElementById('bar-'+f.id);
 
+    // Sahte ilerleme çubuğu
     let prog = 0;
     const fakeT = setInterval(() => {
-      prog = Math.min(prog + Math.random() * 15, 88);
-      if (barEl) barEl.style.width = prog + '%';
-    }, 120);
+      prog = Math.min(prog + Math.random()*20, 85);
+      if (barEl) barEl.style.width = prog+'%';
+    }, 100);
 
     try {
-      let cdnUrl = null, viewerUrl = null, thumbDataUrl = null;
-
-      if (!f.isVid) {
-        const res = await uploadToImgBB(f.file);
-        cdnUrl    = res.cdnUrl;
-        viewerUrl = res.viewerUrl;
-        thumbDataUrl = res.thumbUrl;
-      }
-
-      // Store blob data in IndexedDB for persistence
-      const b64 = await fileToBase64(f.file);
       const fileId = 'file_'+Date.now()+'_'+rndId();
-      await saveBlobData(fileId, b64);
+
+      /* ── Blob'u doğrudan IndexedDB'ye kaydet (base64 YOK) ── */
+      await saveBlob(fileId, f.file);
+
+      /* ── Küçük resimler için URL oluştur ── */
+      let thumbUrl = null;
+      if (!f.isVid && f.file.size < 5*1024*1024) {
+        thumbUrl = await makeThumb(f.file);
+      }
 
       const meta = {
         id:         fileId,
@@ -1307,9 +1120,7 @@ async function startUpload() {
         type:       f.file.type,
         isVid:      f.isVid,
         isPublic:   !isPrivate,
-        cdnUrl,
-        viewerUrl,
-        thumbDataUrl: f.isVid ? null : thumbDataUrl,
+        thumbUrl,
         password:   passVal || null,
         note:       noteVal || null,
         expiresAt,
@@ -1326,9 +1137,8 @@ async function startUpload() {
       if (stEl) stEl.textContent = f.isVid ? '🎬' : '✅';
       ok++;
 
-      // Navigate to file view for single upload
       if (todo.length === 1) {
-        setTimeout(() => openFileView(fileId), 500);
+        setTimeout(() => openFileView(fileId), 400);
       }
 
     } catch (err) {
@@ -1337,16 +1147,17 @@ async function startUpload() {
       if (stEl) stEl.textContent = '❌';
       if (barEl) barEl.style.width = '0';
       fail++;
-      console.error(err);
+      console.error('Upload hatası:', err);
+      showToast('❌ '+h(f.file.name)+': yüklenemedi.','err');
     }
   }
 
   uploading = false;
   btn.disabled = false;
-  btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg> Yükle';
+  btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg> Yükle`;
 
-  if (fail > 0) showToast(`⚠️ ${ok} yüklendi, ${fail} başarısız.`,'warn');
-  else showToast(`✅ ${ok} dosya yüklendi!`,'ok');
+  if (ok > 0 && fail === 0) showToast(`✅ ${ok} dosya yüklendi!`,'ok');
+  else if (fail > 0)        showToast(`⚠️ ${ok} yüklendi, ${fail} başarısız.`,'warn');
 
   if (todo.length > 1 && ok > 0) {
     clearQueue();
@@ -1354,44 +1165,58 @@ async function startUpload() {
   }
 }
 
-/* ══════════════════════════════════════════
-   MY FILES PAGE
-══════════════════════════════════════════ */
+/* Canvas ile küçük resim oluştur */
+function makeThumb(file) {
+  return new Promise(res => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const max = 300;
+      const ratio = Math.min(max/img.width, max/img.height);
+      canvas.width  = img.width  * ratio;
+      canvas.height = img.height * ratio;
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      res(canvas.toDataURL('image/jpeg', 0.7));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); res(null); };
+    img.src = url;
+  });
+}
+
+/* ══ MY FILES ══ */
 async function loadMyFiles() {
   const session = getSession();
-  if (!session) {
-    showPage('home');
-    openModal('login');
-    return;
-  }
+  if (!session) { showPage('home'); openModal('login'); return; }
   const files = await getAllFiles(session.id);
-  document.getElementById('files-sub').textContent = `${files.length} dosya · ${formatBytes(files.reduce((a,f)=>a+f.size,0))} kullanıldı`;
+  document.getElementById('files-sub').textContent =
+    `${files.length} dosya · ${formatBytes(files.reduce((a,f)=>a+f.size,0))} kullanıldı`;
   renderMyFiles();
 }
 
 async function renderMyFiles() {
-  const session = getSession();
-  if (!session) return;
+  const session = getSession(); if (!session) return;
   const files   = await getAllFiles(session.id);
-  const search  = document.getElementById('search-inp')?.value.toLowerCase() || '';
-  const filter  = document.getElementById('filter-sel')?.value || 'all';
+  const search  = document.getElementById('search-inp')?.value.toLowerCase()||'';
+  const filter  = document.getElementById('filter-sel')?.value||'all';
   const grid    = document.getElementById('files-grid');
   grid.innerHTML = '';
 
-  let filtered = files.filter(f => {
-    const nameMatch = f.name.toLowerCase().includes(search);
-    if (filter === 'image') return nameMatch && !f.isVid;
-    if (filter === 'video') return nameMatch && f.isVid;
-    if (filter === 'public') return nameMatch && f.isPublic;
-    if (filter === 'private') return nameMatch && !f.isPublic;
-    return nameMatch;
-  }).sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const filtered = files.filter(f => {
+    const nm = f.name.toLowerCase().includes(search);
+    if (filter==='image')   return nm && !f.isVid;
+    if (filter==='video')   return nm && f.isVid;
+    if (filter==='public')  return nm && f.isPublic;
+    if (filter==='private') return nm && !f.isPublic;
+    return nm;
+  }).sort((a,b) => new Date(b.createdAt)-new Date(a.createdAt));
 
   if (!filtered.length) {
     grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
       <h4>Dosya bulunamadı</h4>
-      <p>${files.length ? 'Arama kriterini değiştir.' : 'Henüz dosya yüklemediniz.'}</p>
+      <p>${files.length?'Arama kriterini değiştir.':'Henüz dosya yüklemediniz.'}</p>
     </div>`;
     return;
   }
@@ -1402,61 +1227,51 @@ async function renderMyFiles() {
     card.className = 'file-card';
     card.onclick = () => openFileView(f.id);
 
-    // Load blob for thumbnail
-    let thumbSrc = f.thumbDataUrl || '';
-    if (!thumbSrc && !f.isVid) {
-      const bd = await getBlobData(f.id);
-      if (bd) thumbSrc = bd;
+    /* Küçük resim */
+    let thumbHtml = '';
+    if (f.isVid) {
+      thumbHtml = `<div class="vid-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>`;
+    } else if (f.thumbUrl) {
+      thumbHtml = `<img src="${f.thumbUrl}" alt="${h(f.name)}" loading="lazy"/>`;
+    } else {
+      thumbHtml = `<div style="font-size:36px">🖼️</div>`;
     }
-
-    const thumbHtml = f.isVid
-      ? `<div class="vid-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>`
-      : (thumbSrc ? `<img src="${thumbSrc}" alt="${h(f.name)}" loading="lazy"/>` : `<div style="font-size:40px">🖼️</div>`);
 
     card.innerHTML = `
       <div class="file-card-thumb">
         ${thumbHtml}
         <div class="fc-badges">
-          ${f.isPublic ? '<span class="fc-badge pub">Açık</span>' : '<span class="fc-badge priv">Gizli</span>'}
-          ${f.isVid ? '<span class="fc-badge vid">Video</span>' : ''}
-          ${f.password ? '<span class="fc-badge pass">🔒</span>' : ''}
-          ${expired ? '<span class="fc-badge" style="background:rgba(220,38,38,.85);color:#fff">Süresi Doldu</span>' : (f.expiresAt ? '<span class="fc-badge exp">⏱</span>' : '')}
+          ${f.isPublic?'<span class="fc-badge pub">Açık</span>':'<span class="fc-badge priv">Gizli</span>'}
+          ${f.isVid?'<span class="fc-badge vid">Video</span>':''}
+          ${f.password?'<span class="fc-badge pass">🔒</span>':''}
+          ${expired?'<span class="fc-badge" style="background:rgba(220,38,38,.85);color:#fff">Doldu</span>':(f.expiresAt?'<span class="fc-badge exp">⏱</span>':'')}
         </div>
       </div>
       <div class="file-card-body">
         <div class="fc-name" title="${h(f.name)}">${h(f.name)}</div>
         <div class="fc-meta">
           <span>${formatBytes(f.size)}</span>
-          <span class="fc-views">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            ${f.views}
-          </span>
+          <span>${new Date(f.createdAt).toLocaleDateString('tr-TR')}</span>
         </div>
       </div>`;
     grid.appendChild(card);
   }
 }
 
-/* ══════════════════════════════════════════
-   FILE VIEW PAGE
-══════════════════════════════════════════ */
-async function openFileView(fileId, fromPage) {
-  prevPage = fromPage || (document.querySelector('.page.active')?.id?.replace('-page','') || 'home');
+/* ══ FILE VIEW ══ */
+async function openFileView(fileId) {
+  prevPage = document.querySelector('.page.active')?.id?.replace('-page','') || 'home';
   currentFileId = fileId;
 
   const f = await getFile(fileId);
   if (!f) { showToast('❌ Dosya bulunamadı.','err'); return; }
 
-  // Check expiry
-  if (isExpired(f)) {
-    showToast('⚠️ Bu dosyanın süresi doldu.','warn');
-  }
+  if (isExpired(f)) showToast('⚠️ Bu dosyanın süresi doldu.','warn');
 
-  // Check ownership
   const session = getSession();
   const isOwner = session && session.id === f.ownerId;
 
-  // Password gate (non-owners)
+  /* Şifre kontrolü (sahip değilse) */
   if (f.password && !isOwner) {
     pendingFileView = fileId;
     document.getElementById('pw-overlay').classList.remove('hidden');
@@ -1468,83 +1283,77 @@ async function openFileView(fileId, fromPage) {
   await renderFileView(f, isOwner);
 }
 
-let pendingFileView = null;
 async function checkPassword() {
   const f = await getFile(pendingFileView);
   if (!f) return;
-  const entered = document.getElementById('pw-input').value;
-  if (entered === f.password) {
+  if (document.getElementById('pw-input').value === f.password) {
     document.getElementById('pw-overlay').classList.add('hidden');
     await renderFileView(f, false);
   } else {
     document.getElementById('pw-err').classList.add('show');
-    document.getElementById('pw-input').classList.add('err');
-    setTimeout(() => document.getElementById('pw-input').classList.remove('err'), 600);
+    document.getElementById('pw-input').style.borderColor='var(--red)';
+    setTimeout(()=>document.getElementById('pw-input').style.borderColor='',700);
   }
 }
 
+/* FIX 5: Görüntülenme sayısı — her açılışta +1, IndexedDB'ye kaydedilir ══ */
 async function renderFileView(f, isOwner) {
   showPage('fileview');
   document.getElementById('fv-breadcrumb').textContent = f.name;
   document.getElementById('fv-delete-btn').classList.toggle('hidden', !isOwner);
   document.getElementById('fv-note-edit').classList.toggle('hidden', !isOwner);
+  document.getElementById('fv-privacy-btn').classList.toggle('hidden', !isOwner);
 
-  // Increment view count (for non-owners)
-  if (!isOwner) {
-    f.views = (f.views || 0) + 1;
-    await saveFileMeta(f);
-  }
+  /* Görüntülenme sayısını artır (her açılışta) */
+  f.views = (f.views || 0) + 1;
+  await saveFileMeta(f);
 
-  // Media
+  /* Medya göster */
   const mediaBox = document.getElementById('fv-media-inner');
-  const blobData = await getBlobData(f.id);
-  const srcUrl   = blobData || f.cdnUrl || '';
+  const blobUrl  = await getBlobUrl(f.id);
 
   if (f.isVid) {
-    mediaBox.innerHTML = `<video src="${srcUrl}" controls style="max-height:580px;width:100%"></video>`;
+    const src = blobUrl || '';
+    mediaBox.innerHTML = `<video src="${src}" controls style="max-height:580px;width:100%"></video>`;
   } else {
-    const displaySrc = f.cdnUrl || srcUrl;
-    mediaBox.innerHTML = `<img src="${displaySrc}" alt="${h(f.name)}" style="max-height:580px;width:100%;object-fit:contain"/>`;
+    const src = blobUrl || '';
+    mediaBox.innerHTML = `<img src="${src}" alt="${h(f.name)}" style="max-height:580px;width:100%;object-fit:contain"/>`;
   }
 
-  // Filename & meta
   document.getElementById('fv-filename').textContent = f.name;
-  document.getElementById('fv-filemeta').textContent = `${formatBytes(f.size)} · ${f.type} · ${new Date(f.createdAt).toLocaleDateString('tr-TR')}`;
+  document.getElementById('fv-filemeta').textContent =
+    `${formatBytes(f.size)} · ${f.type} · ${new Date(f.createdAt).toLocaleDateString('tr-TR')}`;
 
-  // View count
+  /* Görüntülenme animasyonu */
   animCount('fv-views', f.views);
 
-  // Info table
-  const infoEl = document.getElementById('fv-info-table');
-  infoEl.innerHTML = `
-    <div class="info-row"><span class="ik">Gizlilik</span><span class="iv">${f.isPublic ? '🌍 Herkese Açık' : '🔒 Gizli'}</span></div>
+  /* Bilgi tablosu */
+  document.getElementById('fv-info-table').innerHTML = `
+    <div class="info-row"><span class="ik">Gizlilik</span><span class="iv">${f.isPublic?'🌍 Herkese Açık':'🔒 Gizli'}</span></div>
     <div class="info-row"><span class="ik">Süre</span><span class="iv">${expiryText(f)}</span></div>
-    ${f.password ? '<div class="info-row"><span class="ik">Şifre</span><span class="iv">🔒 Korumalı</span></div>' : ''}
+    ${f.password?'<div class="info-row"><span class="ik">Şifre</span><span class="iv">🔒 Korumalı</span></div>':''}
     <div class="info-row"><span class="ik">Boyut</span><span class="iv">${formatBytes(f.size)}</span></div>
     <div class="info-row"><span class="ik">Yüklenme</span><span class="iv">${new Date(f.createdAt).toLocaleDateString('tr-TR')}</span></div>`;
 
-  // Share link — deep link using hash
+  /* Paylaşım linki */
   const shareLink = location.origin + location.pathname + '#view/' + f.id;
   const fvLinkInp = document.getElementById('fv-link-inp');
-  fvLinkInp.value = f.cdnUrl && !f.isVid ? f.cdnUrl : shareLink;
+  fvLinkInp.value = shareLink;
 
-  // QR
-  const qrTarget = encodeURIComponent(fvLinkInp.value);
-  document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrTarget}&bgcolor=ffffff&color=1a1a2e&margin=3`;
+  /* QR Kod */
+  const qrTarget = encodeURIComponent(shareLink);
+  document.getElementById('qr-img').src =
+    `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrTarget}&bgcolor=ffffff&color=1a1a2e&margin=3`;
 
-  // Note
+  /* Not */
   const noteDisp = document.getElementById('fv-note-display');
-  if (f.note) {
-    noteDisp.innerHTML = `<div class="note-box" style="margin-top:12px"><strong>📝 Not:</strong>\n${h(f.note)}</div>`;
-  } else {
-    noteDisp.innerHTML = '';
-  }
-  if (isOwner) {
-    document.getElementById('fv-note-inp').value = f.note || '';
-  }
+  noteDisp.innerHTML = f.note
+    ? `<div class="note-box" style="margin-top:12px"><strong>📝 Not:</strong>\n${h(f.note)}</div>`
+    : '';
+  if (isOwner) document.getElementById('fv-note-inp').value = f.note||'';
 
-  // Share buttons
-  const enc = encodeURIComponent(fvLinkInp.value);
+  /* Paylaş butonları */
+  const enc = encodeURIComponent(shareLink);
   document.getElementById('share-grid').innerHTML = `
     <a href="https://wa.me/?text=${enc}" target="_blank" class="share-btn"><span>💬</span>WhatsApp</a>
     <a href="https://t.me/share/url?url=${enc}" target="_blank" class="share-btn"><span>✈️</span>Telegram</a>
@@ -1553,51 +1362,51 @@ async function renderFileView(f, isOwner) {
 }
 
 async function saveNote() {
-  const f = await getFile(currentFileId);
-  if (!f) return;
+  const f = await getFile(currentFileId); if (!f) return;
   f.note = document.getElementById('fv-note-inp').value.trim() || null;
   await saveFileMeta(f);
-  const noteDisp = document.getElementById('fv-note-display');
-  if (f.note) {
-    noteDisp.innerHTML = `<div class="note-box" style="margin-top:12px"><strong>📝 Not:</strong>\n${h(f.note)}</div>`;
-  } else {
-    noteDisp.innerHTML = '';
-  }
+  document.getElementById('fv-note-display').innerHTML = f.note
+    ? `<div class="note-box" style="margin-top:12px"><strong>📝 Not:</strong>\n${h(f.note)}</div>`
+    : '';
   showToast('✅ Not kaydedildi.','ok');
 }
 
 async function togglePrivacyView() {
-  const f = await getFile(currentFileId);
-  if (!f) return;
-  const session = getSession();
-  if (!session || session.id !== f.ownerId) { showToast('❌ Bu işlem için yetkiniz yok.','err'); return; }
+  const f = await getFile(currentFileId); if (!f) return;
+  const s = getSession();
+  if (!s||s.id!==f.ownerId) { showToast('❌ Yetki yok.','err'); return; }
   f.isPublic = !f.isPublic;
   await saveFileMeta(f);
-  showToast(f.isPublic ? '🌍 Herkese açıldı.' : '🔒 Gizlendi.','ok');
+  showToast(f.isPublic?'🌍 Herkese açıldı.':'🔒 Gizlendi.','ok');
   renderFileView(f, true);
 }
 
 function copyFvLink() {
   const val = document.getElementById('fv-link-inp').value;
-  navigator.clipboard?.writeText(val).then(() => showToast('✅ Link kopyalandı!','ok')).catch(() => fallbackCopy(val));
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(val).then(()=>showToast('✅ Link kopyalandı!','ok')).catch(()=>fallbackCopy(val));
+  } else {
+    fallbackCopy(val);
+  }
 }
 
 async function downloadCurrent() {
-  const f = await getFile(currentFileId);
-  if (!f) return;
-  const blobData = await getBlobData(f.id);
-  if (blobData) {
+  const f = await getFile(currentFileId); if (!f) return;
+  const blob = await getBlob(f.id);
+  if (blob) {
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = blobData; a.download = f.name;
+    a.href = url; a.download = f.name;
     document.body.appendChild(a); a.click(); a.remove();
-  } else if (f.cdnUrl) {
-    window.open(f.cdnUrl, '_blank');
+    setTimeout(()=>URL.revokeObjectURL(url), 2000);
+    showToast('⬇️ İndirme başlatıldı.','ok');
+  } else {
+    showToast('❌ Dosya bulunamadı.','err');
   }
-  showToast('⬇️ İndirme başlatıldı.','ok');
 }
 
 function confirmDelete() {
-  openConfirm('🗑️ Dosyayı Sil', 'Bu işlem geri alınamaz. Silmek istiyor musunuz?', doDeleteCurrent);
+  openConfirm('🗑️ Dosyayı Sil','Bu işlem geri alınamaz.', doDeleteCurrent);
 }
 
 async function doDeleteCurrent() {
@@ -1609,20 +1418,18 @@ async function doDeleteCurrent() {
 
 function downloadQR() {
   const img = document.getElementById('qr-img');
-  if (!img || !img.src) { showToast('⚠️ QR hazır değil.','warn'); return; }
+  if (!img?.src) { showToast('⚠️ QR hazır değil.','warn'); return; }
   fetch(img.src)
-    .then(r => r.blob())
+    .then(r=>r.blob())
     .then(b => {
       const url = URL.createObjectURL(b);
-      const a = document.createElement('a'); a.href = url; a.download = 'qr-hizlimedi.png';
-      a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+      const a = document.createElement('a'); a.href=url; a.download='qr-hizlimedi.png';
+      a.click(); setTimeout(()=>URL.revokeObjectURL(url),1000);
       showToast('⬇️ QR indirildi!','ok');
-    }).catch(() => { window.open(img.src,'_blank'); });
+    }).catch(()=>window.open(img.src,'_blank'));
 }
 
-/* ══════════════════════════════════════════
-   HASH-BASED ROUTING (for share links)
-══════════════════════════════════════════ */
+/* ══ HASH ROUTING ══ */
 async function handleHash() {
   const hash = location.hash;
   if (hash.startsWith('#view/')) {
@@ -1630,65 +1437,66 @@ async function handleHash() {
     if (fileId) await openFileView(fileId);
   }
 }
-
 window.addEventListener('hashchange', handleHash);
 
-/* ══════════════════════════════════════════
-   TOAST
-══════════════════════════════════════════ */
+/* ══ TOAST ══ */
 function showToast(msg, type='ok') {
-  const wrap = document.getElementById('toast-wrap');
-  const t    = document.createElement('div');
+  const t = document.createElement('div');
   t.className = 'toast '+type;
   t.textContent = msg;
-  wrap.appendChild(t);
+  document.getElementById('toast-wrap').appendChild(t);
   setTimeout(() => {
-    t.style.transition = 'opacity .28s,transform .28s';
-    t.style.opacity = '0'; t.style.transform = 'translateX(14px)';
-    setTimeout(() => t.remove(), 300);
+    t.style.transition='opacity .28s,transform .28s';
+    t.style.opacity='0'; t.style.transform='translateX(14px)';
+    setTimeout(()=>t.remove(), 300);
   }, 3400);
 }
 
-/* ══════════════════════════════════════════
-   HELPERS
-══════════════════════════════════════════ */
+/* ══ HELPERS ══ */
 function formatBytes(b) {
   if (!b) return '0 B';
-  if (b < 1024) return b+' B';
-  if (b < 1048576) return (b/1024).toFixed(1)+' KB';
-  if (b < 1073741824) return (b/1048576).toFixed(2)+' MB';
+  if (b<1024) return b+' B';
+  if (b<1048576) return (b/1024).toFixed(1)+' KB';
+  if (b<1073741824) return (b/1048576).toFixed(2)+' MB';
   return (b/1073741824).toFixed(2)+' GB';
 }
 function rndId(n=6) { return Math.random().toString(36).slice(2,2+n); }
-function h(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function h(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 function animCount(id, target) {
   const el = document.getElementById(id); if (!el) return;
+  el.textContent = '0';
+  if (target === 0) return;
   let cur = 0; const step = Math.max(1, Math.ceil(target/40));
-  const t = setInterval(() => { cur = Math.min(cur+step,target); el.textContent=cur.toLocaleString('tr-TR'); if(cur>=target)clearInterval(t); }, 30);
+  const t = setInterval(() => {
+    cur = Math.min(cur+step, target);
+    el.textContent = cur.toLocaleString('tr-TR');
+    if (cur>=target) clearInterval(t);
+  }, 30);
 }
 function fallbackCopy(text) {
-  const ta = document.createElement('textarea'); ta.value=text; ta.style.cssText='position:fixed;left:-9999px';
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.cssText='position:fixed;left:-9999px';
   document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); showToast('✅ Kopyalandı!','ok'); } catch { showToast('❌ Kopyalama başarısız.','err'); }
+  try { document.execCommand('copy'); showToast('✅ Kopyalandı!','ok'); }
+  catch { showToast('❌ Kopyalama başarısız.','err'); }
   ta.remove();
 }
 
-/* ══════════════════════════════════════════
-   KEYBOARD / BACKDROP
-══════════════════════════════════════════ */
+/* ══ KEYBOARD ══ */
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeModal(); closeGoogleModal(); closeConfirm();
+  if (e.key==='Escape') {
+    closeModal(); closeConfirm();
     document.getElementById('pw-overlay').classList.add('hidden');
   }
 });
 
-/* ══════════════════════════════════════════
-   INIT
-══════════════════════════════════════════ */
+/* ══ INIT ══ */
 (async function init() {
-  const session = getSession();
-  updateNavbar(session);
+  updateNavbar(getSession());
   await handleHash();
 })();
 </script>
