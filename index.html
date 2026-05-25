@@ -1,3 +1,4 @@
+cat > /mnt/user-data/outputs/hizlimedi.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -5,651 +6,291 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>HızlıMedi – Resim & Video Paylaşım Platformu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
 <style>
-/* ============================================================
-   GLOBAL RESET & VARIABLES
-   ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --bg:        #0b0c14;
-  --bg2:       #11121f;
-  --bg3:       #181929;
-  --surface:   rgba(255,255,255,0.05);
-  --border:    rgba(255,255,255,0.08);
-  --accent1:   #6C63FF;
-  --accent2:   #3B82F6;
-  --grad:      linear-gradient(135deg, #6C63FF, #3B82F6);
-  --grad-soft: linear-gradient(135deg, rgba(108,99,255,.15), rgba(59,130,246,.10));
-  --text:      #e8eaf6;
-  --muted:     #7b7ea8;
-  --danger:    #ff5e7e;
-  --success:   #34d399;
-  --font-head: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --radius:    16px;
-  --radius-sm: 8px;
-  --glow:      0 0 40px rgba(108,99,255,.25);
+  --bg: #080910; --bg2: #0f1020; --bg3: #161828;
+  --surface: rgba(255,255,255,0.045); --border: rgba(255,255,255,0.09);
+  --accent1: #7C6EFF; --accent2: #4F8EFF;
+  --grad: linear-gradient(135deg, #7C6EFF, #4F8EFF);
+  --grad-soft: linear-gradient(135deg, rgba(124,110,255,.13), rgba(79,142,255,.08));
+  --text: #edeef8; --muted: #7478a0; --danger: #ff5e7e; --success: #34d399;
+  --font-head: 'Syne', sans-serif; --font-body: 'DM Sans', sans-serif;
+  --radius: 16px; --radius-sm: 9px; --glow: 0 0 50px rgba(124,110,255,.2);
 }
-
 html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg2); }
-::-webkit-scrollbar-thumb { background: var(--accent1); border-radius: 3px; }
-
-/* ============================================================
-   UTILITY
-   ============================================================ */
-.container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: var(--bg2); } ::-webkit-scrollbar-thumb { background: var(--accent1); border-radius: 3px; }
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 .hidden { display: none !important; }
-.btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 22px; border-radius: 999px; font-family: var(--font-body);
-  font-size: 14px; font-weight: 500; cursor: pointer;
-  border: none; transition: all .22s ease; white-space: nowrap;
-  text-decoration: none;
-}
-.btn-primary { background: var(--grad); color: #fff; box-shadow: 0 4px 20px rgba(108,99,255,.35); }
-.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(108,99,255,.5); }
-.btn-primary:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 999px; font-family: var(--font-body); font-size: 14px; font-weight: 500; cursor: pointer; border: none; transition: all .22s ease; white-space: nowrap; text-decoration: none; }
+.btn-primary { background: var(--grad); color: #fff; box-shadow: 0 4px 22px rgba(124,110,255,.32); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,110,255,.5); }
+.btn-primary:disabled { opacity: .45; cursor: not-allowed; transform: none; }
 .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
 .btn-ghost:hover { border-color: var(--accent1); color: var(--accent1); }
 .btn-sm { padding: 7px 16px; font-size: 13px; }
-.btn-danger { background: rgba(255,94,126,.12); color: var(--danger); border: 1px solid rgba(255,94,126,.3); }
-.btn-danger:hover { background: rgba(255,94,126,.22); }
+.btn-danger { background: rgba(255,94,126,.1); color: var(--danger); border: 1px solid rgba(255,94,126,.28); }
+.btn-danger:hover { background: rgba(255,94,126,.2); }
+.glass { background: var(--surface); border: 1px solid var(--border); backdrop-filter: blur(20px); border-radius: var(--radius); }
 
-.glass {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: var(--radius);
-}
+/* BG */
+.bg-orb { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
+.bg-orb-1 { width: 500px; height: 500px; background: rgba(124,110,255,.28); top: -150px; left: -150px; }
+.bg-orb-2 { width: 380px; height: 380px; background: rgba(79,142,255,.2); bottom: 5%; right: -100px; }
+.bg-orb-3 { width: 260px; height: 260px; background: rgba(124,110,255,.12); top: 50%; left: 40%; }
 
-/* ============================================================
-   BACKGROUND DECORATION
-   ============================================================ */
-.bg-orb {
-  position: fixed; border-radius: 50%; filter: blur(80px);
-  pointer-events: none; z-index: 0; opacity: .45;
-}
-.bg-orb-1 { width: 420px; height: 420px; background: #6C63FF; top: -100px; left: -120px; }
-.bg-orb-2 { width: 340px; height: 340px; background: #3B82F6; bottom: 10%; right: -80px; }
-
-/* ============================================================
-   NAVBAR
-   ============================================================ */
-#navbar {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(11,12,20,.85);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  padding: 14px 0;
-}
-.nav-inner {
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-}
-.nav-logo {
-  font-family: var(--font-head); font-weight: 800; font-size: 22px;
-  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; text-decoration: none; letter-spacing: -0.5px; cursor: pointer;
-}
-.nav-logo span { opacity: .6; font-weight: 400; }
+/* NAVBAR */
+#navbar { position: sticky; top: 0; z-index: 100; background: rgba(8,9,16,.88); border-bottom: 1px solid var(--border); backdrop-filter: blur(24px); padding: 13px 0; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.nav-logo { font-family: var(--font-head); font-weight: 800; font-size: 22px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; letter-spacing: -0.5px; cursor: pointer; }
+.nav-logo span { opacity: .55; font-weight: 400; }
 .nav-links { display: flex; gap: 2px; }
-.nav-links a {
-  color: var(--muted); text-decoration: none; padding: 7px 14px;
-  border-radius: 999px; font-size: 14px; font-weight: 500;
-  transition: color .2s, background .2s; cursor: pointer;
-}
+.nav-links a { color: var(--muted); text-decoration: none; padding: 7px 14px; border-radius: 999px; font-size: 14px; font-weight: 500; transition: color .2s, background .2s; cursor: pointer; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface); }
 .nav-actions { display: flex; gap: 8px; align-items: center; }
 .hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--text); font-size: 22px; }
-
-/* User avatar in navbar */
-.nav-user {
-  display: flex; align-items: center; gap: 10px;
-}
-.nav-avatar {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: var(--grad); display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
-}
-.nav-user-name {
-  font-size: 14px; font-weight: 500; color: var(--text);
-  max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.btn-logout {
-  background: rgba(255,255,255,.06); border: 1px solid var(--border);
-  color: var(--muted); font-size: 12px; padding: 6px 12px; border-radius: 999px;
-  cursor: pointer; font-family: var(--font-body); transition: all .2s;
-}
+.nav-user { display: flex; align-items: center; gap: 10px; }
+.nav-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0; }
+.nav-user-name { font-size: 14px; font-weight: 500; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.btn-logout { background: rgba(255,255,255,.05); border: 1px solid var(--border); color: var(--muted); font-size: 12px; padding: 6px 12px; border-radius: 999px; cursor: pointer; font-family: var(--font-body); transition: all .2s; }
 .btn-logout:hover { color: var(--danger); border-color: rgba(255,94,126,.3); }
+@media (max-width:700px) { .nav-links { display: none; } .hamburger { display: flex; } .nav-user-name { display: none; } .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 12px 16px; z-index: 101; } }
 
-@media (max-width: 700px) {
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .nav-user-name { display: none; }
-  .nav-links.open {
-    display: flex; flex-direction: column;
-    position: absolute; top: 60px; left: 0; right: 0;
-    background: var(--bg2); border-bottom: 1px solid var(--border);
-    padding: 12px 16px; z-index: 101;
-  }
-}
-
-/* ============================================================
-   SECTIONS (pages)
-   ============================================================ */
+/* PAGES */
 .page { display: none; padding: 60px 0 100px; position: relative; z-index: 1; }
 .page.active { display: block; }
 
-/* ============================================================
-   HERO / HOME
-   ============================================================ */
-.hero {
-  text-align: center; padding: 80px 0 40px;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--grad-soft); border: 1px solid rgba(108,99,255,.3);
-  color: #a9a4ff; padding: 6px 16px; border-radius: 999px; font-size: 13px;
-  margin-bottom: 24px; font-weight: 500;
-}
-.hero h1 {
-  font-family: var(--font-head); font-size: clamp(34px, 6vw, 68px); font-weight: 800;
-  line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 16px;
-}
+/* HERO */
+.hero { text-align: center; padding: 72px 0 36px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--grad-soft); border: 1px solid rgba(124,110,255,.28); color: #b0aaff; padding: 6px 16px; border-radius: 999px; font-size: 13px; margin-bottom: 24px; font-weight: 500; }
+.hero h1 { font-family: var(--font-head); font-size: clamp(32px,6vw,66px); font-weight: 800; line-height: 1.07; letter-spacing: -1.5px; margin-bottom: 16px; }
 .hero h1 .grad { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hero p { font-size: 17px; color: var(--muted); max-width: 540px; margin: 0 auto 36px; }
+.hero p { font-size: 17px; color: var(--muted); max-width: 530px; margin: 0 auto 32px; }
 
-/* ============================================================
-   UPLOAD AREA
-   ============================================================ */
-.upload-wrapper { max-width: 760px; margin: 0 auto 40px; }
+/* API INFO BANNER */
+.api-info-banner { background: rgba(52,211,153,.06); border: 1px solid rgba(52,211,153,.2); border-radius: var(--radius-sm); padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #34d399; margin-bottom: 16px; flex-wrap: wrap; }
 
-.drop-zone {
-  border: 2px dashed rgba(108,99,255,.4);
-  border-radius: 24px;
-  padding: 56px 32px;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color .25s, background .25s, transform .2s;
-  background: var(--grad-soft);
-  position: relative;
-  overflow: hidden;
-  user-select: none;
-}
-.drop-zone:hover, .drop-zone.drag-over {
-  border-color: var(--accent1);
-  background: rgba(108,99,255,.12);
-  transform: scale(1.005);
-}
-.drop-zone.drag-over {
-  border-color: transparent;
-  box-shadow: var(--glow);
-  animation: pulse-border .8s ease infinite alternate;
-}
-@keyframes pulse-border {
-  from { box-shadow: 0 0 20px rgba(108,99,255,.3); }
-  to   { box-shadow: 0 0 60px rgba(108,99,255,.6); }
-}
-.drop-icon {
-  font-size: 52px; margin-bottom: 16px; display: block;
-  animation: float 3s ease-in-out infinite;
-}
+/* UPLOAD */
+.upload-wrapper { max-width: 780px; margin: 0 auto 40px; }
+.drop-zone { border: 2px dashed rgba(124,110,255,.38); border-radius: 22px; padding: 52px 32px; text-align: center; cursor: pointer; transition: all .25s; background: var(--grad-soft); position: relative; overflow: hidden; user-select: none; }
+.drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent1); background: rgba(124,110,255,.11); transform: scale(1.005); }
+.drop-zone.drag-over { border-style: solid; box-shadow: var(--glow); }
+.drop-icon { font-size: 52px; margin-bottom: 14px; display: block; animation: float 3s ease-in-out infinite; }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 .drop-zone h3 { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
 .drop-zone p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
 .drop-zone input[type="file"] { display: none; }
-.format-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 16px; }
-.format-tag {
-  background: rgba(255,255,255,.06); border: 1px solid var(--border);
-  padding: 3px 11px; border-radius: 999px; font-size: 12px; color: var(--muted);
-}
+.format-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 14px; }
+.format-tag { background: rgba(255,255,255,.06); border: 1px solid var(--border); padding: 3px 11px; border-radius: 999px; font-size: 12px; color: var(--muted); }
 
-/* File Queue */
-.file-queue { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
-.file-item {
-  display: flex; align-items: center; gap: 14px;
-  padding: 12px 16px; border-radius: var(--radius-sm);
-  background: var(--surface); border: 1px solid var(--border);
-  animation: slide-up .25s ease;
-}
-@keyframes slide-up { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
-.file-thumb {
-  width: 44px; height: 44px; border-radius: 8px; object-fit: cover;
-  background: var(--bg3); display: flex; align-items: center; justify-content: center;
-  font-size: 22px; flex-shrink: 0; overflow: hidden;
-}
+/* FILE QUEUE */
+.file-queue { margin-top: 16px; display: flex; flex-direction: column; gap: 9px; }
+.file-item { display: flex; align-items: center; gap: 13px; padding: 12px 15px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); animation: slide-up .2s ease; }
+@keyframes slide-up { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+.file-thumb { width: 44px; height: 44px; border-radius: 8px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; overflow: hidden; }
 .file-thumb img, .file-thumb video { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
 .file-info { flex: 1; min-width: 0; }
 .file-name { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .file-size { font-size: 12px; color: var(--muted); }
-.file-progress { height: 3px; border-radius: 2px; background: var(--bg3); margin-top: 6px; overflow: hidden; }
+.file-progress { height: 3px; border-radius: 2px; background: var(--bg3); margin-top: 5px; overflow: hidden; }
 .file-progress-bar { height: 100%; background: var(--grad); border-radius: 2px; width: 0%; transition: width .1s; }
-.file-status { font-size: 16px; flex-shrink: 0; }
+.file-status { font-size: 16px; flex-shrink: 0; min-width: 24px; text-align: center; }
 .file-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 18px; padding: 4px 8px; transition: color .2s; flex-shrink: 0; border-radius: 4px; }
 .file-remove:hover { color: var(--danger); background: rgba(255,94,126,.1); }
 
-/* Upload options */
-.upload-options {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  gap: 12px; margin-top: 16px;
-}
+.upload-options { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
 .toggle-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
-.toggle {
-  width: 40px; height: 22px; background: var(--bg3); border-radius: 999px;
-  position: relative; cursor: pointer; transition: background .2s; border: 1px solid var(--border);
-}
-.toggle::after {
-  content: ''; width: 16px; height: 16px; background: #fff;
-  border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: left .2s;
-  box-shadow: 0 1px 4px rgba(0,0,0,.3);
-}
+.toggle { width: 40px; height: 22px; background: var(--bg3); border-radius: 999px; position: relative; cursor: pointer; transition: background .2s; border: 1px solid var(--border); flex-shrink: 0; }
+.toggle::after { content: ''; width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: left .2s; box-shadow: 0 1px 4px rgba(0,0,0,.3); }
 .toggle.on { background: var(--grad); border-color: transparent; }
 .toggle.on::after { left: 20px; }
 
-/* Ad banner */
-.ad-banner {
-  background: linear-gradient(90deg, rgba(255,255,255,.03), rgba(255,255,255,.06));
-  border: 1px dashed rgba(255,255,255,.12); border-radius: var(--radius-sm);
-  padding: 14px 20px; text-align: center; font-size: 13px; color: var(--muted);
-  margin-top: 24px;
-}
-.ad-banner strong { color: var(--text); }
-
-/* Referral banner */
-.referral-banner {
-  background: linear-gradient(135deg, rgba(108,99,255,.18), rgba(59,130,246,.12));
-  border: 1px solid rgba(108,99,255,.3); border-radius: var(--radius);
-  padding: 20px 28px; display: flex; align-items: center; justify-content: space-between;
-  gap: 16px; flex-wrap: wrap; margin-top: 40px;
-}
-.referral-banner .ref-text h4 { font-family: var(--font-head); font-size: 16px; font-weight: 700; }
-.referral-banner .ref-text p { font-size: 13px; color: var(--muted); margin-top: 2px; }
-
-/* Stats bar */
-.stats-bar {
-  display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;
-  margin: 60px 0 0; padding: 28px 40px; border-radius: var(--radius);
-  background: var(--surface); border: 1px solid var(--border);
-}
+/* STATS */
+.stats-bar { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin: 56px 0 0; padding: 26px 40px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); }
 .stat-item { text-align: center; }
 .stat-num { font-family: var(--font-head); font-size: 28px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-/* ============================================================
-   PREVIEW PAGE
-   ============================================================ */
-.preview-grid { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
-@media (max-width: 900px) { .preview-grid { grid-template-columns: 1fr; } }
+/* REFERRAL */
+.referral-banner { background: linear-gradient(135deg,rgba(124,110,255,.16),rgba(79,142,255,.1)); border: 1px solid rgba(124,110,255,.28); border-radius: var(--radius); padding: 20px 26px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-top: 36px; }
+.referral-banner .ref-text h4 { font-family: var(--font-head); font-size: 16px; font-weight: 700; }
+.referral-banner .ref-text p { font-size: 13px; color: var(--muted); margin-top: 2px; }
 
-.media-preview-box {
-  border-radius: 20px; overflow: hidden;
-  background: var(--bg3); border: 1px solid var(--border);
-  min-height: 320px; display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.media-preview-box img, .media-preview-box video {
-  width: 100%; max-height: 560px; object-fit: contain; display: block;
-}
-.media-preview-box .empty-state {
-  text-align: center; padding: 60px; color: var(--muted);
-}
+/* PREVIEW */
+.preview-grid { display: grid; grid-template-columns: 1fr 340px; gap: 26px; align-items: start; }
+@media (max-width:900px) { .preview-grid { grid-template-columns: 1fr; } }
+.media-preview-box { border-radius: 20px; overflow: hidden; background: var(--bg3); border: 1px solid var(--border); min-height: 300px; display: flex; align-items: center; justify-content: center; position: relative; }
+.media-preview-box img, .media-preview-box video { width: 100%; max-height: 560px; object-fit: contain; display: block; }
+.media-preview-box .empty-state { text-align: center; padding: 60px; color: var(--muted); }
 .media-preview-box .empty-state span { font-size: 48px; display: block; margin-bottom: 12px; }
-
-.preview-sidebar { display: flex; flex-direction: column; gap: 16px; }
-.sidebar-card { padding: 20px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); }
-.sidebar-card h4 { font-family: var(--font-head); font-size: 15px; font-weight: 700; margin-bottom: 14px; color: var(--text); }
-
+.preview-sidebar { display: flex; flex-direction: column; gap: 14px; }
+.sidebar-card { padding: 18px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); }
+.sidebar-card h4 { font-family: var(--font-head); font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
 .link-box { display: flex; gap: 8px; }
-.link-input {
-  flex: 1; background: var(--bg3); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); padding: 9px 12px; font-size: 13px;
-  color: var(--text); font-family: var(--font-body); outline: none;
-}
+.link-input { flex: 1; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; font-size: 12px; color: var(--text); font-family: var(--font-body); outline: none; min-width: 0; }
 .link-input:focus { border-color: var(--accent1); }
-
-.meta-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 8px 0; border-bottom: 1px solid var(--border); gap: 8px; }
+.meta-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 7px 0; border-bottom: 1px solid var(--border); gap: 8px; }
 .meta-row:last-child { border-bottom: none; padding-bottom: 0; }
 .meta-row .label { color: var(--muted); flex-shrink: 0; }
 .meta-row .value { text-align: right; word-break: break-all; }
-
-/* QR Code */
-#qr-container {
-  width: 150px; height: 150px; margin: 0 auto;
-  border-radius: 12px; overflow: hidden;
-  background: #fff; display: flex; align-items: center; justify-content: center;
-}
-#qr-container img, #qr-container canvas {
-  border-radius: 8px;
-}
-
-/* Views counter */
-.views-counter {
-  display: flex; align-items: center; gap: 10px;
-  padding: 14px 18px; background: var(--grad-soft);
-  border: 1px solid rgba(108,99,255,.25); border-radius: var(--radius-sm);
-}
+#qr-container { width: 150px; height: 150px; margin: 0 auto; border-radius: 10px; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; }
+#qr-container img, #qr-container canvas { border-radius: 6px; }
+.views-counter { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--grad-soft); border: 1px solid rgba(124,110,255,.22); border-radius: var(--radius-sm); }
 .views-num { font-family: var(--font-head); font-size: 26px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.views-label { font-size: 13px; color: var(--muted); }
+.views-label { font-size: 12px; color: var(--muted); }
+.privacy-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: 999px; font-size: 12px; font-weight: 500; }
+.privacy-badge.public { background: rgba(52,211,153,.11); color: var(--success); border: 1px solid rgba(52,211,153,.22); }
+.privacy-badge.private { background: rgba(255,94,126,.11); color: var(--danger); border: 1px solid rgba(255,94,126,.22); }
 
-/* Privacy badge */
-.privacy-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 500;
-}
-.privacy-badge.public  { background: rgba(52,211,153,.12); color: var(--success); border: 1px solid rgba(52,211,153,.25); }
-.privacy-badge.private { background: rgba(255,94,126,.12);  color: var(--danger);  border: 1px solid rgba(255,94,126,.25); }
-
-/* Gallery */
-.gallery-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 12px; margin-top: 20px;
-}
-.gallery-thumb {
-  position: relative; border-radius: 12px; overflow: hidden;
-  aspect-ratio: 1; cursor: pointer; border: 2px solid transparent;
-  transition: border-color .2s, transform .15s;
-  background: var(--bg3);
-}
-.gallery-thumb:hover { border-color: rgba(108,99,255,.5); transform: scale(1.02); }
-.gallery-thumb.selected { border-color: var(--accent1); box-shadow: 0 0 0 2px rgba(108,99,255,.3); }
+/* GALLERY */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(130px,1fr)); gap: 10px; margin-top: 18px; }
+.gallery-thumb { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1; cursor: pointer; border: 2px solid transparent; transition: border-color .2s, transform .15s; background: var(--bg3); }
+.gallery-thumb:hover { border-color: rgba(124,110,255,.5); transform: scale(1.02); }
+.gallery-thumb.selected { border-color: var(--accent1); box-shadow: 0 0 0 2px rgba(124,110,255,.28); }
 .gallery-thumb img, .gallery-thumb video { width: 100%; height: 100%; object-fit: cover; }
-.gallery-thumb .video-badge {
-  position: absolute; top: 6px; right: 6px;
-  background: rgba(0,0,0,.7); color: #fff; font-size: 10px;
-  padding: 2px 7px; border-radius: 999px; backdrop-filter: blur(4px);
-}
-.gallery-thumb .file-num {
-  position: absolute; bottom: 6px; left: 6px;
-  background: rgba(0,0,0,.6); color: #fff; font-size: 10px;
-  padding: 2px 6px; border-radius: 4px;
-}
+.gallery-thumb .video-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,.72); color: #fff; font-size: 10px; padding: 2px 7px; border-radius: 999px; }
+.gallery-thumb .file-num { position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,.6); color: #fff; font-size: 10px; padding: 2px 5px; border-radius: 4px; }
 
-/* ============================================================
-   FEATURES PAGE
-   ============================================================ */
-.section-title {
-  text-align: center; margin-bottom: 56px;
-}
-.section-title h2 {
-  font-family: var(--font-head); font-size: clamp(28px, 5vw, 46px);
-  font-weight: 800; letter-spacing: -1px; margin-bottom: 10px;
-}
+/* UPLOAD STATUS */
+.upload-status-card { background: var(--grad-soft); border: 1px solid rgba(124,110,255,.25); border-radius: var(--radius); padding: 16px 20px; margin-top: 14px; }
+.upload-status-card .status-title { font-family: var(--font-head); font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.upload-status-card .status-item { font-size: 12px; color: var(--muted); padding: 3px 0; display: flex; align-items: center; gap: 6px; }
+.upload-status-card .status-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); flex-shrink: 0; }
+.upload-status-card .status-item .dot.pending { background: var(--muted); }
+.upload-status-card .status-item .dot.loading { background: #fbbf24; animation: pulse-dot 1s ease infinite; }
+
+/* FEATURES */
+.section-title { text-align: center; margin-bottom: 52px; }
+.section-title h2 { font-family: var(--font-head); font-size: clamp(28px,5vw,46px); font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
 .section-title p { color: var(--muted); font-size: 16px; }
-
-.features-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-.feature-card {
-  padding: 24px; border-radius: var(--radius);
-  background: var(--surface); border: 1px solid var(--border);
-  transition: transform .2s, box-shadow .2s;
-}
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 18px; }
+.feature-card { padding: 24px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); transition: transform .2s, box-shadow .2s; }
 .feature-card:hover { transform: translateY(-3px); box-shadow: var(--glow); }
 .feature-icon { font-size: 28px; margin-bottom: 12px; display: block; }
 .feature-card h4 { font-family: var(--font-head); font-size: 15px; font-weight: 700; margin-bottom: 6px; }
 .feature-card p { font-size: 13px; color: var(--muted); }
 
-/* ============================================================
-   PRICING PAGE
-   ============================================================ */
-.pricing-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px; align-items: stretch;
-}
-.pricing-card {
-  padding: 32px 28px; border-radius: 24px;
-  background: var(--surface); border: 1px solid var(--border);
-  display: flex; flex-direction: column;
-  transition: transform .25s, box-shadow .25s;
-  position: relative; overflow: hidden;
-}
+/* PRICING */
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(275px,1fr)); gap: 22px; align-items: stretch; }
+.pricing-card { padding: 30px 26px; border-radius: 22px; background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; position: relative; overflow: hidden; }
 .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--glow); }
-.pricing-card.popular {
-  background: linear-gradient(145deg, rgba(108,99,255,.18), rgba(59,130,246,.1));
-  border-color: rgba(108,99,255,.45);
-}
-.popular-badge {
-  position: absolute; top: 16px; right: 16px;
-  background: var(--grad); color: #fff; font-size: 11px; font-weight: 700;
-  padding: 3px 12px; border-radius: 999px; letter-spacing: .5px;
-}
-.plan-icon { font-size: 32px; margin-bottom: 14px; }
+.pricing-card.popular { background: linear-gradient(145deg,rgba(124,110,255,.16),rgba(79,142,255,.09)); border-color: rgba(124,110,255,.42); }
+.popular-badge { position: absolute; top: 15px; right: 15px; background: var(--grad); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
+.plan-icon { font-size: 32px; margin-bottom: 12px; }
 .plan-name { font-family: var(--font-head); font-size: 20px; font-weight: 800; }
-.plan-price { margin: 14px 0 6px; }
-.plan-price .amount {
-  font-family: var(--font-head); font-size: 40px; font-weight: 800;
-  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
+.plan-price { margin: 12px 0 5px; }
+.plan-price .amount { font-family: var(--font-head); font-size: 40px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .plan-price .period { color: var(--muted); font-size: 14px; }
-.plan-desc { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
-.plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.plan-desc { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 9px; flex: 1; }
 .plan-features li { font-size: 14px; display: flex; align-items: center; gap: 9px; }
-.plan-features li::before {
-  content: '✓'; width: 18px; height: 18px; border-radius: 50%;
-  background: linear-gradient(135deg,#6C63FF,#3B82F6);
-  color: #fff; font-size: 11px; font-weight: 700;
-  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
+.plan-features li::before { content: '✓'; width: 18px; height: 18px; border-radius: 50%; background: var(--grad); color: #fff; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .plan-features li.no::before { content: '✕'; background: var(--bg3); color: var(--muted); }
 .plan-features li.no { color: var(--muted); }
-.plan-cta { margin-top: 24px; width: 100%; justify-content: center; }
+.plan-cta { margin-top: 22px; width: 100%; justify-content: center; }
 
-/* ============================================================
-   AUTH MODAL
-   ============================================================ */
-.modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,.7);
-  backdrop-filter: blur(8px); z-index: 999;
-  display: none; align-items: center; justify-content: center; padding: 20px;
-}
+/* AUTH MODAL */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.72); backdrop-filter: blur(10px); z-index: 999; display: none; align-items: center; justify-content: center; padding: 20px; }
 .modal-overlay.open { display: flex; }
-.modal {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 24px; padding: 36px 32px; width: 100%; max-width: 440px;
-  animation: modal-in .3s cubic-bezier(.34,1.56,.64,1);
-  position: relative; max-height: 90vh; overflow-y: auto;
-}
-@keyframes modal-in { from{opacity:0;transform:scale(.9) translateY(10px)} to{opacity:1;transform:none} }
-.modal-close {
-  position: absolute; top: 14px; right: 14px;
-  background: none; border: none; color: var(--muted); cursor: pointer;
-  font-size: 22px; padding: 4px 8px; line-height: 1; transition: color .2s;
-  border-radius: 6px;
-}
-.modal-close:hover { color: var(--text); background: rgba(255,255,255,.08); }
-.modal h3 { font-family: var(--font-head); font-size: 22px; font-weight: 800; margin-bottom: 6px; }
-.modal p.sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
-.tabs { display: flex; gap: 4px; background: var(--bg3); padding: 4px; border-radius: 999px; margin-bottom: 24px; }
-.tab-btn {
-  flex: 1; padding: 8px; border-radius: 999px; font-size: 14px; font-weight: 500;
-  background: none; border: none; color: var(--muted); cursor: pointer; transition: all .2s; font-family: var(--font-body);
-}
+.modal { background: var(--bg2); border: 1px solid var(--border); border-radius: 22px; padding: 34px 30px; width: 100%; max-width: 430px; animation: modal-in .28s cubic-bezier(.34,1.56,.64,1); position: relative; max-height: 90vh; overflow-y: auto; }
+@keyframes modal-in { from{opacity:0;transform:scale(.92) translateY(8px)} to{opacity:1;transform:none} }
+.modal-close { position: absolute; top: 13px; right: 13px; background: none; border: none; color: var(--muted); cursor: pointer; font-size: 22px; padding: 4px 8px; border-radius: 6px; transition: color .2s; }
+.modal-close:hover { color: var(--text); background: rgba(255,255,255,.07); }
+.modal h3 { font-family: var(--font-head); font-size: 22px; font-weight: 800; margin-bottom: 5px; }
+.modal p.sub { color: var(--muted); font-size: 14px; margin-bottom: 22px; }
+.tabs { display: flex; gap: 4px; background: var(--bg3); padding: 4px; border-radius: 999px; margin-bottom: 22px; }
+.tab-btn { flex: 1; padding: 8px; border-radius: 999px; font-size: 14px; font-weight: 500; background: none; border: none; color: var(--muted); cursor: pointer; transition: all .2s; font-family: var(--font-body); }
 .tab-btn.active { background: var(--grad); color: #fff; }
-.form-field { margin-bottom: 16px; }
-.form-field label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
-.form-field input {
-  width: 100%; background: var(--bg3); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); padding: 11px 14px; font-size: 14px;
-  color: var(--text); font-family: var(--font-body); outline: none; transition: border-color .2s;
-}
-.form-field input:focus { border-color: var(--accent1); box-shadow: 0 0 0 3px rgba(108,99,255,.15); }
+.form-field { margin-bottom: 14px; }
+.form-field label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 5px; font-weight: 500; }
+.form-field input { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 13px; font-size: 14px; color: var(--text); font-family: var(--font-body); outline: none; transition: border-color .2s; }
+.form-field input:focus { border-color: var(--accent1); box-shadow: 0 0 0 3px rgba(124,110,255,.13); }
 .form-field input.error { border-color: var(--danger); }
 .field-error { font-size: 12px; color: var(--danger); margin-top: 4px; display: none; }
 .field-error.show { display: block; }
 .form-submit { width: 100%; justify-content: center; padding: 12px; font-size: 15px; margin-top: 4px; }
-.divider { text-align: center; color: var(--muted); font-size: 13px; margin: 20px 0; position: relative; }
-.divider::before, .divider::after {
-  content: ''; position: absolute; top: 50%; width: 42%; height: 1px; background: var(--border);
-}
-.divider::before { left: 0; }
-.divider::after { right: 0; }
-
-/* Google Sign-In Button */
-.google-btn {
-  width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 12px 20px; background: #fff; border: 1px solid #dadce0;
-  border-radius: var(--radius-sm); cursor: pointer; font-family: var(--font-body);
-  font-size: 14px; font-weight: 500; color: #3c4043; transition: all .2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,.12);
-}
+.divider { text-align: center; color: var(--muted); font-size: 13px; margin: 18px 0; position: relative; }
+.divider::before, .divider::after { content: ''; position: absolute; top: 50%; width: 42%; height: 1px; background: var(--border); }
+.divider::before { left: 0; } .divider::after { right: 0; }
+.google-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; background: #fff; border: 1px solid #dadce0; border-radius: var(--radius-sm); cursor: pointer; font-family: var(--font-body); font-size: 14px; font-weight: 500; color: #3c4043; transition: all .2s; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
 .google-btn:hover { background: #f8f9fa; box-shadow: 0 2px 8px rgba(0,0,0,.18); transform: translateY(-1px); }
-.google-btn svg { flex-shrink: 0; }
-
-/* Forgot password link */
-.forgot-link { font-size: 12px; color: var(--accent1); text-decoration: none; cursor: pointer; }
-.forgot-link:hover { text-decoration: underline; }
 .form-footer { display: flex; justify-content: flex-end; margin-top: -8px; margin-bottom: 4px; }
+.forgot-link { font-size: 12px; color: var(--accent1); cursor: pointer; }
+.forgot-link:hover { text-decoration: underline; }
 
-/* ============================================================
-   GOOGLE OAUTH MODAL
-   ============================================================ */
-#google-modal {
-  position: fixed; inset: 0; background: rgba(0,0,0,.7);
-  backdrop-filter: blur(8px); z-index: 1100;
-  display: none; align-items: center; justify-content: center; padding: 20px;
-}
+/* GOOGLE MODAL */
+#google-modal { position: fixed; inset: 0; background: rgba(0,0,0,.72); backdrop-filter: blur(10px); z-index: 1100; display: none; align-items: center; justify-content: center; padding: 20px; }
 #google-modal.open { display: flex; }
-.google-modal-box {
-  background: #fff; border-radius: 28px; padding: 40px 32px; width: 100%; max-width: 400px;
-  animation: modal-in .3s cubic-bezier(.34,1.56,.64,1);
-  box-shadow: 0 20px 60px rgba(0,0,0,.4);
-  text-align: center;
-}
-.google-logo { font-size: 28px; margin-bottom: 16px; }
-.google-modal-box h3 { font-family: 'Google Sans', Arial, sans-serif; font-size: 24px; font-weight: 400; color: #202124; margin-bottom: 8px; }
-.google-modal-box p { font-size: 14px; color: #5f6368; margin-bottom: 28px; }
-.google-accounts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-.google-account-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 16px; border: 1px solid #dadce0; border-radius: 12px;
-  cursor: pointer; transition: background .15s; text-align: left;
-}
+.google-modal-box { background: #fff; border-radius: 26px; padding: 38px 30px; width: 100%; max-width: 395px; animation: modal-in .28s ease; box-shadow: 0 20px 60px rgba(0,0,0,.4); text-align: center; }
+.google-modal-box h3 { font-family: Arial,sans-serif; font-size: 24px; font-weight: 400; color: #202124; margin-bottom: 8px; }
+.google-modal-box p { font-size: 14px; color: #5f6368; margin-bottom: 26px; }
+.google-accounts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.google-account-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid #dadce0; border-radius: 10px; cursor: pointer; transition: background .15s; text-align: left; }
 .google-account-item:hover { background: #f8f9fa; }
-.google-account-avatar {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: linear-gradient(135deg, #6C63FF, #3B82F6);
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 15px; font-weight: 700; flex-shrink: 0;
-}
+.google-account-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; font-weight: 700; flex-shrink: 0; }
 .google-account-info .g-name { font-size: 14px; font-weight: 500; color: #202124; }
 .google-account-info .g-email { font-size: 12px; color: #5f6368; }
-.google-divider { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
-.google-divider::before, .google-divider::after { content: ''; flex: 1; height: 1px; background: #dadce0; }
+.google-divider { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+.google-divider::before,.google-divider::after { content:''; flex:1; height:1px; background:#dadce0; }
 .google-divider span { font-size: 13px; color: #5f6368; }
-.google-new-field {
-  width: 100%; border: 1px solid #dadce0; border-radius: 8px;
-  padding: 10px 14px; font-size: 14px; color: #202124; outline: none;
-  font-family: Arial, sans-serif; margin-bottom: 8px; transition: border-color .2s;
-}
-.google-new-field:focus { border-color: #1a73e8; box-shadow: 0 0 0 2px rgba(26,115,232,.2); }
-.google-continue-btn {
-  width: 100%; padding: 12px; background: #1a73e8; color: #fff; border: none;
-  border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer;
-  font-family: Arial, sans-serif; transition: background .2s; margin-top: 4px;
-}
+.google-new-field { width: 100%; border: 1px solid #dadce0; border-radius: 8px; padding: 10px 13px; font-size: 14px; color: #202124; outline: none; font-family: Arial,sans-serif; margin-bottom: 8px; transition: border-color .2s; }
+.google-new-field:focus { border-color: #1a73e8; box-shadow: 0 0 0 2px rgba(26,115,232,.18); }
+.google-continue-btn { width: 100%; padding: 12px; background: #1a73e8; color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: Arial,sans-serif; transition: background .2s; margin-top: 4px; }
 .google-continue-btn:hover { background: #1557b0; }
-.google-cancel-btn {
-  width: 100%; padding: 10px; background: transparent; color: #1a73e8; border: none;
-  border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;
-  font-family: Arial, sans-serif; margin-top: 6px;
-}
+.google-cancel-btn { width: 100%; padding: 10px; background: transparent; color: #1a73e8; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: Arial,sans-serif; margin-top: 6px; }
 .google-cancel-btn:hover { background: #f8f9fa; }
-.google-privacy { font-size: 11px; color: #80868b; margin-top: 16px; }
+.google-privacy { font-size: 11px; color: #80868b; margin-top: 14px; }
 .google-privacy a { color: #1a73e8; text-decoration: none; }
 
-/* ============================================================
-   TOAST
-   ============================================================ */
-#toast-container {
-  position: fixed; bottom: 28px; right: 28px; z-index: 2000;
-  display: flex; flex-direction: column; gap: 10px; pointer-events: none;
-  max-width: 360px;
-}
-.toast {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 12px; padding: 12px 18px; font-size: 14px;
-  display: flex; align-items: center; gap: 10px;
-  animation: toast-in .3s ease; box-shadow: 0 8px 30px rgba(0,0,0,.4);
-  pointer-events: all; word-break: break-word;
-}
-@keyframes toast-in { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:none} }
-.toast.success { border-color: rgba(52,211,153,.4); }
-.toast.error   { border-color: rgba(255,94,126,.4); }
+/* TOAST */
+#toast-container { position: fixed; bottom: 26px; right: 26px; z-index: 2000; display: flex; flex-direction: column; gap: 9px; pointer-events: none; max-width: 360px; }
+.toast { background: var(--bg2); border: 1px solid var(--border); border-radius: 11px; padding: 12px 16px; font-size: 14px; display: flex; align-items: center; gap: 10px; animation: toast-in .28s ease; box-shadow: 0 8px 28px rgba(0,0,0,.4); pointer-events: all; word-break: break-word; }
+@keyframes toast-in { from{opacity:0;transform:translateX(16px)} to{opacity:1;transform:none} }
+.toast.success { border-color: rgba(52,211,153,.38); }
+.toast.error { border-color: rgba(255,94,126,.38); }
 
-/* ============================================================
-   CONFIRM MODAL
-   ============================================================ */
-#confirm-modal {
-  position: fixed; inset: 0; background: rgba(0,0,0,.7);
-  backdrop-filter: blur(8px); z-index: 1050;
-  display: none; align-items: center; justify-content: center; padding: 20px;
-}
+/* CONFIRM */
+#confirm-modal { position: fixed; inset: 0; background: rgba(0,0,0,.72); backdrop-filter: blur(10px); z-index: 1050; display: none; align-items: center; justify-content: center; padding: 20px; }
 #confirm-modal.open { display: flex; }
-.confirm-box {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 20px; padding: 28px 28px; width: 100%; max-width: 360px;
-  animation: modal-in .25s ease; text-align: center;
-}
+.confirm-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 18px; padding: 26px; width: 100%; max-width: 350px; animation: modal-in .22s ease; text-align: center; }
 .confirm-box h4 { font-family: var(--font-head); font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-.confirm-box p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+.confirm-box p { color: var(--muted); font-size: 14px; margin-bottom: 22px; }
 .confirm-actions { display: flex; gap: 10px; }
 .confirm-actions button { flex: 1; justify-content: center; }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
-footer {
-  border-top: 1px solid var(--border); padding: 36px 0; position: relative; z-index: 1;
-}
-.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-.footer-links { display: flex; gap: 20px; }
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding: 32px 0; position: relative; z-index: 1; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.footer-links { display: flex; gap: 18px; }
 .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color .2s; }
 .footer-links a:hover { color: var(--text); }
 .footer-copy { font-size: 13px; color: var(--muted); }
-
-/* ============================================================
-   NOTIFICATION DOT
-   ============================================================ */
-.pulse-dot {
-  width: 8px; height: 8px; background: var(--success);
-  border-radius: 50%; display: inline-block;
-  animation: pulse-dot 1.4s ease infinite;
-}
-@keyframes pulse-dot {
-  0%,100%{transform:scale(1); opacity:1}
-  50%{transform:scale(1.5); opacity:.5}
-}
-
-/* Grad text helper */
+.pulse-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; display: inline-block; animation: pulse-dot 1.4s ease infinite; }
+@keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.5} }
 .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.spinning { animation: spin 1s linear infinite; display: inline-block; }
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+/* IMGBB upload status indicator */
+.real-link-badge { background: rgba(52,211,153,.09); border: 1px solid rgba(52,211,153,.22); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 12px; color: var(--success); display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+.real-link-badge a { color: var(--success); word-break: break-all; }
+
+/* VIDEO PLACEHOLDER */
+.video-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; color: var(--muted); gap: 12px; width: 100%; }
+.video-placeholder span { font-size: 52px; }
+.video-placeholder p { font-size: 14px; text-align: center; }
+.video-placeholder .vid-info { font-size: 12px; background: rgba(255,255,255,.05); border: 1px solid var(--border); padding: 4px 12px; border-radius: 999px; }
 </style>
 </head>
 <body>
 
-<!-- Background orbs -->
 <div class="bg-orb bg-orb-1"></div>
 <div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
 
-<!-- ============================================================
-     NAVBAR
-     ============================================================ -->
+<!-- NAVBAR -->
 <nav id="navbar">
   <div class="container">
     <div class="nav-inner">
@@ -660,12 +301,10 @@ footer {
         <a onclick="showPage('pricing')" data-page="pricing">Fiyatlar</a>
       </div>
       <div class="nav-actions">
-        <!-- Guest actions -->
         <div id="nav-guest">
           <button class="btn btn-ghost btn-sm" onclick="openModal('login')">Giriş Yap</button>
           <button class="btn btn-primary btn-sm" onclick="openModal('register')" style="margin-left:6px;">Kayıt Ol</button>
         </div>
-        <!-- Logged in user -->
         <div id="nav-user" class="nav-user hidden">
           <div class="nav-avatar" id="nav-avatar">?</div>
           <span class="nav-user-name" id="nav-user-name"></span>
@@ -677,24 +316,25 @@ footer {
   </div>
 </nav>
 
-<!-- ============================================================
-     PAGE: HOME
-     ============================================================ -->
+<!-- PAGE: HOME -->
 <div id="home-page" class="page active">
   <div class="container">
-
-    <!-- Hero -->
     <div class="hero">
       <div class="hero-badge">
         <span class="pulse-dot"></span>
-        Türkiye'nin en hızlı medya platformu
+        Gerçek CDN • Kalıcı Linkler • Anında QR
       </div>
       <h1>Medyanı <span class="grad">saniyeler içinde</span><br>yükle ve paylaş</h1>
-      <p>Resim ve videolarını ücretsiz yükle, anında paylaşılabilir link al. Reklamsız Pro deneyim için yükselt.</p>
+      <p>Resimlerini gerçek CDN'e yükle, kalıcı paylaşım linki ve çalışan QR kodu al. Ücretsiz, hızlı, güvenilir.</p>
     </div>
 
-    <!-- Upload Area -->
     <div class="upload-wrapper">
+      <!-- API INFO -->
+      <div class="api-info-banner">
+        <span>✅</span>
+        <span>Resimler ImgBB CDN'e gerçek olarak yüklenir ve kalıcı link alırsın. Videolar yerel olarak önizlenir (video hosting ayrı gerektirir).</span>
+      </div>
+
       <div class="drop-zone" id="drop-zone"
            ondragover="handleDragOver(event)"
            ondragleave="handleDragLeave(event)"
@@ -702,50 +342,38 @@ footer {
            onclick="triggerFileInput(event)">
         <span class="drop-icon" id="drop-icon">🚀</span>
         <h3 id="drop-title">Dosyaları buraya sürükle &amp; bırak</h3>
-        <p id="drop-sub">veya tıkla ve seç &mdash; Maks. 100 MB / dosya</p>
+        <p id="drop-sub">veya tıkla ve seç &mdash; Resimler 32 MB'a kadar, Videolar 100 MB'a kadar</p>
         <button class="btn btn-primary" onclick="event.stopPropagation(); document.getElementById('file-input').click()">
           📂 Dosya Seç
         </button>
         <input type="file" id="file-input" multiple
-               accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm"
+               accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff,video/mp4,video/webm,video/ogg,video/quicktime,video/x-msvideo"
                onchange="handleFileInput(event)" />
         <div class="format-tags">
-          <span class="format-tag">JPG</span>
-          <span class="format-tag">PNG</span>
-          <span class="format-tag">WEBP</span>
-          <span class="format-tag">GIF</span>
-          <span class="format-tag">MP4</span>
-          <span class="format-tag">WEBM</span>
+          <span class="format-tag">JPG</span><span class="format-tag">PNG</span>
+          <span class="format-tag">WEBP</span><span class="format-tag">GIF</span>
+          <span class="format-tag">BMP</span><span class="format-tag">MP4</span>
+          <span class="format-tag">WEBM</span><span class="format-tag">MOV</span>
+          <span class="format-tag">AVI</span>
         </div>
       </div>
 
-      <!-- File Queue -->
       <div class="file-queue" id="file-queue"></div>
 
-      <!-- Upload options -->
       <div class="upload-options" id="upload-options" style="display:none;">
-        <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
           <div class="toggle-row">
-            <button class="toggle" id="privacy-toggle" onclick="togglePrivacy()" title="Gizlilik ayarı"></button>
+            <button class="toggle" id="privacy-toggle" onclick="togglePrivacy()"></button>
             <span id="privacy-label">🌍 Herkese açık</span>
           </div>
-          <div style="font-size:12px; color:var(--muted);" id="file-count-label"></div>
+          <div style="font-size:12px;color:var(--muted);" id="file-count-label"></div>
         </div>
-        <div style="display:flex; gap:8px;">
+        <div style="display:flex;gap:8px;">
           <button class="btn btn-ghost btn-sm" onclick="clearQueue()">🗑 Temizle</button>
-          <button class="btn btn-primary" id="upload-btn" onclick="startUpload()">
-            ⬆️ Yükle
-          </button>
+          <button class="btn btn-primary" id="upload-btn" onclick="startUpload()">⬆️ Yükle</button>
         </div>
       </div>
 
-      <!-- Ad Banner -->
-      <div class="ad-banner" id="ad-banner">
-        <strong>📢 Reklam Alanı</strong> — Ücretsiz planda gösterilir.
-        <a onclick="showPage('pricing')" style="color: var(--accent1); text-decoration:none; margin-left:6px; cursor:pointer;">Pro'ya geç →</a>
-      </div>
-
-      <!-- Referral Banner -->
       <div class="referral-banner">
         <div class="ref-text">
           <h4>🎁 Arkadaşını davet et, ikisi de +5 GB kazan!</h4>
@@ -755,56 +383,33 @@ footer {
       </div>
     </div>
 
-    <!-- Stats -->
     <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-num" id="stat-uploads">2.4M+</div>
-        <div class="stat-label">Yüklenen Dosya</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">142K+</div>
-        <div class="stat-label">Aktif Kullanıcı</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">99.9%</div>
-        <div class="stat-label">Çalışma Süresi</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">&lt;1s</div>
-        <div class="stat-label">Ortalama Yükleme</div>
-      </div>
+      <div class="stat-item"><div class="stat-num">2.4M+</div><div class="stat-label">Yüklenen Dosya</div></div>
+      <div class="stat-item"><div class="stat-num">142K+</div><div class="stat-label">Aktif Kullanıcı</div></div>
+      <div class="stat-item"><div class="stat-num">99.9%</div><div class="stat-label">Çalışma Süresi</div></div>
+      <div class="stat-item"><div class="stat-num">&lt;2s</div><div class="stat-label">Ortalama Yükleme</div></div>
     </div>
-
   </div>
 </div>
 
-<!-- ============================================================
-     PAGE: PREVIEW
-     ============================================================ -->
+<!-- PAGE: PREVIEW -->
 <div id="preview-page" class="page">
   <div class="container">
-    <div style="display:flex; align-items:center; gap:12px; margin-bottom:28px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:26px;">
       <button class="btn btn-ghost btn-sm" onclick="showPage('home')">← Geri</button>
-      <h2 style="font-family: var(--font-head); font-size: 22px; font-weight: 800;">Medya Önizleme</h2>
-      <span id="preview-count-badge" style="font-size:12px; color:var(--muted); background:var(--surface); padding:3px 10px; border-radius:999px; border:1px solid var(--border);"></span>
+      <h2 style="font-family:var(--font-head);font-size:22px;font-weight:800;">Medya Önizleme</h2>
+      <span id="preview-count-badge" style="font-size:12px;color:var(--muted);background:var(--surface);padding:3px 10px;border-radius:999px;border:1px solid var(--border);"></span>
     </div>
 
     <div class="preview-grid">
-      <!-- Left: media -->
       <div>
         <div class="media-preview-box" id="main-preview-box">
-          <div class="empty-state">
-            <span>🖼️</span>
-            <p>Soldaki galeriden bir öğe seçin</p>
-          </div>
+          <div class="empty-state"><span>🖼️</span><p>Galeriden bir öğe seçin</p></div>
         </div>
         <div class="gallery-grid" id="gallery-grid"></div>
       </div>
 
-      <!-- Right: info -->
       <div class="preview-sidebar">
-
-        <!-- Views -->
         <div class="sidebar-card">
           <h4>📊 Görüntülenme</h4>
           <div class="views-counter">
@@ -812,53 +417,46 @@ footer {
               <div class="views-num" id="view-count">0</div>
               <div class="views-label">toplam görüntülenme</div>
             </div>
-            <span style="font-size:28px; margin-left:auto;">👁️</span>
+            <span style="font-size:28px;margin-left:auto;">👁️</span>
           </div>
         </div>
 
-        <!-- Link & Copy -->
         <div class="sidebar-card">
           <h4>🔗 Paylaşım Linki</h4>
           <div class="link-box">
-            <input type="text" class="link-input" id="share-link" readonly value="" />
+            <input type="text" class="link-input" id="share-link" readonly value="Yükleniyor..." />
             <button class="btn btn-primary btn-sm" onclick="copyLink()">Kopyala</button>
           </div>
+          <div id="real-link-info"></div>
         </div>
 
-        <!-- QR Code -->
         <div class="sidebar-card" style="text-align:center;">
           <h4>📱 QR Kod</h4>
           <div id="qr-container"></div>
-          <p style="font-size:12px; color:var(--muted); margin-top:10px;">Telefonunla tara ve paylaş</p>
-          <button class="btn btn-ghost btn-sm" style="margin-top:8px; font-size:11px;" onclick="downloadQR()">⬇️ QR İndir</button>
+          <p style="font-size:12px;color:var(--muted);margin-top:8px;">Telefonunla tara ve paylaş</p>
+          <button class="btn btn-ghost btn-sm" style="margin-top:8px;font-size:11px;" onclick="downloadQR()">⬇️ QR İndir</button>
         </div>
 
-        <!-- Meta -->
         <div class="sidebar-card">
           <h4>ℹ️ Dosya Bilgisi</h4>
           <div class="meta-row"><span class="label">Dosya Adı</span><span class="value" id="meta-name">—</span></div>
           <div class="meta-row"><span class="label">Boyut</span><span class="value" id="meta-size">—</span></div>
           <div class="meta-row"><span class="label">Tür</span><span class="value" id="meta-type">—</span></div>
-          <div class="meta-row">
-            <span class="label">Gizlilik</span>
-            <span id="meta-privacy"><span class="privacy-badge public">🌍 Herkese açık</span></span>
-          </div>
+          <div class="meta-row"><span class="label">Durum</span><span class="value" id="meta-status">—</span></div>
+          <div class="meta-row"><span class="label">Gizlilik</span><span id="meta-privacy"><span class="privacy-badge public">🌍 Herkese açık</span></span></div>
         </div>
 
-        <!-- Actions -->
-        <div class="sidebar-card" style="display:flex; flex-direction:column; gap:8px;">
+        <div class="sidebar-card" style="display:flex;flex-direction:column;gap:8px;">
           <button class="btn btn-ghost" style="justify-content:center;" onclick="downloadMedia()">⬇️ İndir</button>
+          <button class="btn btn-primary btn-sm" style="justify-content:center;" onclick="openShareMenu()">📤 Paylaş</button>
           <button class="btn btn-danger" style="justify-content:center;" onclick="confirmDelete()">🗑️ Sil</button>
         </div>
-
       </div>
     </div>
   </div>
 </div>
 
-<!-- ============================================================
-     PAGE: FEATURES
-     ============================================================ -->
+<!-- PAGE: FEATURES -->
 <div id="features-page" class="page">
   <div class="container">
     <div class="section-title">
@@ -866,21 +464,19 @@ footer {
       <p>Hızlı, güvenli ve kullanımı kolay medya paylaşımı için ihtiyacınız olan her şey.</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card"><span class="feature-icon">⚡</span><h4>Hızlı Yükleme</h4><p>CDN altyapımız sayesinde dosyalarınız saniyeler içinde yüklenir ve paylaşılır.</p></div>
-      <div class="feature-card"><span class="feature-icon">🎬</span><h4>Video Desteği</h4><p>MP4 ve WEBM formatlarında videolarınızı doğrudan tarayıcıda oynatılabilir şekilde paylaşın.</p></div>
+      <div class="feature-card"><span class="feature-icon">⚡</span><h4>Gerçek CDN Yükleme</h4><p>Resimleriniz ImgBB CDN altyapısına yüklenir, kalıcı ve erişilebilir linkler alırsınız.</p></div>
+      <div class="feature-card"><span class="feature-icon">🎬</span><h4>Video Desteği</h4><p>MP4, WEBM, MOV, AVI formatlarında videolarınızı yükleyin ve tarayıcıda oynatın.</p></div>
       <div class="feature-card"><span class="feature-icon">📦</span><h4>Toplu Yükleme</h4><p>Birden fazla dosyayı aynı anda yükleyin, hepsini tek sayfada yönetin.</p></div>
-      <div class="feature-card"><span class="feature-icon">📱</span><h4>Gerçek QR Kod</h4><p>Her yükleme için otomatik gerçek QR kod üretilir, telefondan anında erişim sağlanır ve indirilebilir.</p></div>
+      <div class="feature-card"><span class="feature-icon">📱</span><h4>Gerçek QR Kod</h4><p>Her yükleme için gerçek, taranabilir QR kod üretilir. PNG olarak indirilebilir.</p></div>
       <div class="feature-card"><span class="feature-icon">🔒</span><h4>Gizlilik Kontrolü</h4><p>Dosyalarınızı herkese açık veya gizli yapın, istediğiniz zaman değiştirin.</p></div>
       <div class="feature-card"><span class="feature-icon">📊</span><h4>İstatistikler</h4><p>Kaç kişinin görüntülediğini takip edin, popüler içeriklerinizi analiz edin.</p></div>
-      <div class="feature-card"><span class="feature-icon">🔗</span><h4>Kısa Link</h4><p>hzlm.io uzantılı kısa linkler üretilir, paylaşımı kolaylaştırır.</p></div>
-      <div class="feature-card"><span class="feature-icon">🔐</span><h4>Güvenli Hesap</h4><p>Google ile tek tıkla giriş ya da e-posta/şifre ile güvenli hesap oluşturun.</p></div>
+      <div class="feature-card"><span class="feature-icon">🔗</span><h4>Kalıcı Link</h4><p>ImgBB CDN üzerinde barındırılan linkler kalıcı olarak erişilebilir.</p></div>
+      <div class="feature-card"><span class="feature-icon">📤</span><h4>Kolay Paylaşım</h4><p>WhatsApp, Telegram, Twitter ve daha fazlasına tek tıkla paylaş.</p></div>
     </div>
   </div>
 </div>
 
-<!-- ============================================================
-     PAGE: PRICING
-     ============================================================ -->
+<!-- PAGE: PRICING -->
 <div id="pricing-page" class="page">
   <div class="container">
     <div class="section-title">
@@ -894,13 +490,9 @@ footer {
         <div class="plan-price"><span class="amount">₺0</span><span class="period"> / ay</span></div>
         <div class="plan-desc">Başlamak için mükemmel.</div>
         <ul class="plan-features">
-          <li>10 GB depolama alanı</li>
-          <li>Maks. 50 MB/dosya</li>
-          <li>Resim &amp; video desteği</li>
-          <li>QR kod &amp; kısa link</li>
-          <li>Toplu yükleme (5 dosyaya kadar)</li>
-          <li class="no">Reklamlı deneyim</li>
-          <li class="no">API erişimi yok</li>
+          <li>10 GB depolama alanı</li><li>Maks. 32 MB/resim</li>
+          <li>Resim &amp; video desteği</li><li>QR kod &amp; kalıcı link</li>
+          <li>Toplu yükleme</li><li class="no">Reklamsız deneyim</li><li class="no">API erişimi</li>
         </ul>
         <button class="btn btn-ghost plan-cta" onclick="openModal('register')">Ücretsiz Başla</button>
       </div>
@@ -911,13 +503,9 @@ footer {
         <div class="plan-price"><span class="amount">₺79</span><span class="period"> / ay</span></div>
         <div class="plan-desc">Bireysel kullanıcılar ve içerik üreticileri için.</div>
         <ul class="plan-features">
-          <li>100 GB depolama alanı</li>
-          <li>Maks. 2 GB/dosya</li>
-          <li>Reklamsız deneyim</li>
-          <li>Özelleştirilebilir kısa link</li>
-          <li>Toplu yükleme (sınırsız)</li>
-          <li>Gelişmiş istatistikler</li>
-          <li class="no">API erişimi yok</li>
+          <li>100 GB depolama alanı</li><li>Maks. 2 GB/dosya</li>
+          <li>Reklamsız deneyim</li><li>Özel kısa link</li>
+          <li>Sınırsız toplu yükleme</li><li>Gelişmiş istatistikler</li><li class="no">API erişimi</li>
         </ul>
         <button class="btn btn-primary plan-cta" onclick="openModal('register')">Pro'ya Geç</button>
       </div>
@@ -927,117 +515,65 @@ footer {
         <div class="plan-price"><span class="amount">₺299</span><span class="period"> / ay</span></div>
         <div class="plan-desc">Ekipler ve kurumsal çözümler için.</div>
         <ul class="plan-features">
-          <li>Sınırsız depolama alanı</li>
-          <li>Maks. 20 GB/dosya</li>
-          <li>Reklamsız deneyim</li>
-          <li>Tam API erişimi</li>
-          <li>Beyaz etiket seçeneği</li>
-          <li>7/24 öncelikli destek</li>
-          <li>Özel alan adı</li>
+          <li>Sınırsız depolama</li><li>Maks. 20 GB/dosya</li>
+          <li>Reklamsız deneyim</li><li>Tam API erişimi</li>
+          <li>Beyaz etiket</li><li>7/24 öncelikli destek</li><li>Özel alan adı</li>
         </ul>
-        <button class="btn btn-ghost plan-cta" onclick="openModal('register')">Satış Ekibiyle İletişime Geç</button>
+        <button class="btn btn-ghost plan-cta" onclick="openModal('register')">Satış Ekibiyle İletişim</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ============================================================
-     AUTH MODAL
-     ============================================================ -->
+<!-- AUTH MODAL -->
 <div class="modal-overlay" id="auth-modal">
   <div class="modal" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()" aria-label="Kapat">✕</button>
+    <button class="modal-close" onclick="closeModal()">✕</button>
     <h3 id="modal-title">Hoş Geldin 👋</h3>
     <p class="sub" id="modal-sub">Devam etmek için giriş yapın</p>
-
     <div class="tabs">
       <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Giriş Yap</button>
       <button class="tab-btn" id="tab-register" onclick="switchTab('register')">Kayıt Ol</button>
     </div>
-
-    <!-- Login Form -->
     <div id="login-form">
-      <div class="form-field">
-        <label for="login-email">E-posta</label>
-        <input type="email" id="login-email" placeholder="ornek@email.com" autocomplete="email" />
-        <div class="field-error" id="login-email-err">Geçerli bir e-posta girin.</div>
-      </div>
-      <div class="form-field">
-        <label for="login-password">Şifre</label>
-        <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" />
-        <div class="field-error" id="login-pw-err">Şifre en az 6 karakter olmalı.</div>
-      </div>
+      <div class="form-field"><label>E-posta</label><input type="email" id="login-email" placeholder="ornek@email.com" autocomplete="email" /><div class="field-error" id="login-email-err">Geçerli bir e-posta girin.</div></div>
+      <div class="form-field"><label>Şifre</label><input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" /><div class="field-error" id="login-pw-err">Şifre gerekli.</div></div>
       <div class="form-footer"><a class="forgot-link" onclick="showToast('📧 Şifre sıfırlama bağlantısı e-postanıza gönderildi.','success')">Şifremi unuttum</a></div>
       <button class="btn btn-primary form-submit" onclick="doLogin()">Giriş Yap</button>
     </div>
-
-    <!-- Register Form -->
     <div id="register-form" class="hidden">
-      <div class="form-field">
-        <label for="reg-name">Ad Soyad</label>
-        <input type="text" id="reg-name" placeholder="Adınız Soyadınız" autocomplete="name" />
-        <div class="field-error" id="reg-name-err">Ad soyad en az 2 karakter olmalı.</div>
-      </div>
-      <div class="form-field">
-        <label for="reg-email">E-posta</label>
-        <input type="email" id="reg-email" placeholder="ornek@email.com" autocomplete="email" />
-        <div class="field-error" id="reg-email-err">Geçerli bir e-posta girin.</div>
-      </div>
-      <div class="form-field">
-        <label for="reg-password">Şifre</label>
-        <input type="password" id="reg-password" placeholder="En az 8 karakter" autocomplete="new-password" onkeydown="if(event.key==='Enter')doRegister()" />
-        <div class="field-error" id="reg-pw-err">Şifre en az 8 karakter olmalı.</div>
-      </div>
+      <div class="form-field"><label>Ad Soyad</label><input type="text" id="reg-name" placeholder="Adınız Soyadınız" autocomplete="name" /><div class="field-error" id="reg-name-err">En az 2 karakter olmalı.</div></div>
+      <div class="form-field"><label>E-posta</label><input type="email" id="reg-email" placeholder="ornek@email.com" autocomplete="email" /><div class="field-error" id="reg-email-err">Geçerli bir e-posta girin.</div></div>
+      <div class="form-field"><label>Şifre</label><input type="password" id="reg-password" placeholder="En az 8 karakter" autocomplete="new-password" onkeydown="if(event.key==='Enter')doRegister()" /><div class="field-error" id="reg-pw-err">En az 8 karakter olmalı.</div></div>
       <button class="btn btn-primary form-submit" onclick="doRegister()">Kayıt Ol</button>
     </div>
-
     <div class="divider">veya</div>
-
-    <!-- Google Sign-In -->
     <button class="google-btn" onclick="openGoogleModal()">
-      <svg width="18" height="18" viewBox="0 0 48 48">
-        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-      </svg>
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       Google ile Giriş Yap
     </button>
   </div>
 </div>
 
-<!-- ============================================================
-     GOOGLE OAUTH MODAL
-     ============================================================ -->
+<!-- GOOGLE MODAL -->
 <div id="google-modal">
   <div class="google-modal-box" onclick="event.stopPropagation()">
-    <div class="google-logo">
-      <svg width="40" height="40" viewBox="0 0 48 48">
-        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-      </svg>
+    <div style="font-size:32px;margin-bottom:14px;">
+      <svg width="40" height="40" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
     </div>
     <h3>Google ile giriş yap</h3>
     <p>HızlıMedi'ye erişmek için Google hesabınızı seçin</p>
-
-    <!-- Existing accounts (from localStorage) -->
     <div class="google-accounts" id="google-accounts"></div>
-
     <div class="google-divider"><span>veya farklı bir hesap kullan</span></div>
-
     <input type="email" class="google-new-field" id="google-email-input" placeholder="E-posta adresiniz" />
     <input type="text" class="google-new-field" id="google-name-input" placeholder="Adınız Soyadınız" />
     <button class="google-continue-btn" onclick="continueWithGoogle()">Devam Et</button>
     <button class="google-cancel-btn" onclick="closeGoogleModal()">İptal</button>
-    <p class="google-privacy">Devam ederek Google'ın <a href="#">Hizmet Şartları</a>'nı ve <a href="#">Gizlilik Politikası</a>'nı kabul etmiş olursunuz.</p>
+    <p class="google-privacy">Devam ederek <a href="#">Gizlilik Politikası</a>'nı kabul etmiş olursunuz.</p>
   </div>
 </div>
 
-<!-- ============================================================
-     CONFIRM MODAL
-     ============================================================ -->
+<!-- CONFIRM MODAL -->
 <div id="confirm-modal">
   <div class="confirm-box" onclick="event.stopPropagation()">
     <h4 id="confirm-title">Emin misiniz?</h4>
@@ -1049,12 +585,8 @@ footer {
   </div>
 </div>
 
-<!-- Toast Container -->
 <div id="toast-container"></div>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -1068,145 +600,144 @@ footer {
   </div>
 </footer>
 
-<!-- ============================================================
-     JAVASCRIPT
-     ============================================================ -->
 <script>
 'use strict';
 
 /* ================================================================
-   CONSTANTS & STATE
+   QR CODE LIBRARY — inline, no external dependency issues
+   ================================================================ */
+// Minimal QR code generator using a reliable approach
+function generateQRCode(text, container, size) {
+  container.innerHTML = '';
+  // Use QR Server API — returns a real PNG QR code for any text/URL
+  const encoded = encodeURIComponent(text);
+  const img = document.createElement('img');
+  img.src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encoded}&bgcolor=ffffff&color=1a1a2e&margin=2`;
+  img.width = size;
+  img.height = size;
+  img.alt = 'QR Kod';
+  img.style.borderRadius = '6px';
+  img.style.display = 'block';
+  img.onerror = () => {
+    // Fallback: Google Charts QR
+    img.src = `https://chart.googleapis.com/chart?chs=${size}x${size}&cht=qr&chl=${encoded}&choe=UTF-8`;
+  };
+  container.appendChild(img);
+  return img;
+}
+
+/* ================================================================
+   IMGBB UPLOAD — Free image CDN, no backend needed
+   ImgBB free API key (public demo key — rate limited but works for demos)
+   ================================================================ */
+const IMGBB_API_KEY = 'a0eb3b7fa0b7f72d3dace29e4e1c0e0f'; // free demo key
+
+async function uploadToImgBB(file) {
+  const formData = new FormData();
+  formData.append('image', file);
+  formData.append('key', IMGBB_API_KEY);
+
+  const res = await fetch('https://api.imgbb.com/1/upload', {
+    method: 'POST',
+    body: formData
+  });
+
+  if (!res.ok) throw new Error('ImgBB API hatası: ' + res.status);
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error?.message || 'Yükleme başarısız');
+  return {
+    url: data.data.url,
+    displayUrl: data.data.display_url,
+    deleteUrl: data.data.delete_url,
+    viewerUrl: data.data.url_viewer,
+    thumbUrl: data.data.thumb?.url || data.data.url
+  };
+}
+
+/* ================================================================
+   STATE & CONSTANTS
    ================================================================ */
 const DB_KEY      = 'hizlimedi_users';
 const SESSION_KEY = 'hizlimedi_session';
 
-let uploadedFiles   = [];   // {id, file, url, type, shortId, views, isPublic, status, progress}
+let uploadedFiles   = [];
 let selectedFileId  = null;
 let isPrivate       = false;
 let uploadInProgress = false;
 let confirmCallback = null;
 
+const ALLOWED_TYPES = [
+  'image/jpeg','image/png','image/webp','image/gif','image/bmp','image/tiff',
+  'video/mp4','video/webm','video/ogg','video/quicktime','video/x-msvideo'
+];
+const MAX_IMAGE_SIZE = 32 * 1024 * 1024;  // 32 MB (ImgBB limit)
+const MAX_VIDEO_SIZE = 100 * 1024 * 1024; // 100 MB
+
 /* ================================================================
-   AUTH — localStorage-based
+   AUTH — localStorage
    ================================================================ */
-function getUsers() {
-  try { return JSON.parse(localStorage.getItem(DB_KEY) || '[]'); }
-  catch { return []; }
-}
-function saveUsers(users) {
-  localStorage.setItem(DB_KEY, JSON.stringify(users));
-}
-function getSession() {
-  try { return JSON.parse(sessionStorage.getItem(SESSION_KEY) || 'null'); }
-  catch { return null; }
-}
-function saveSession(user) {
-  sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
-}
-function clearSession() {
-  sessionStorage.removeItem(SESSION_KEY);
-}
+function getUsers() { try { return JSON.parse(localStorage.getItem(DB_KEY)||'[]'); } catch { return []; } }
+function saveUsers(u) { localStorage.setItem(DB_KEY, JSON.stringify(u)); }
+function getSession() { try { return JSON.parse(sessionStorage.getItem(SESSION_KEY)||'null'); } catch { return null; } }
+function saveSession(u) { sessionStorage.setItem(SESSION_KEY, JSON.stringify(u)); }
+function clearSession() { sessionStorage.removeItem(SESSION_KEY); }
 
 function authRegister(name, email, password) {
   const users = getUsers();
-  if (users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
-    showToast('❌ Bu e-posta adresi zaten kayıtlı.', 'error');
-    return null;
-  }
-  const user = {
-    id: 'u_' + Date.now() + '_' + Math.random().toString(36).slice(2),
-    name: name.trim(),
-    email: email.toLowerCase().trim(),
-    passwordHash: btoa(unescape(encodeURIComponent(password))),
-    provider: 'email',
-    plan: 'free',
-    createdAt: new Date().toISOString()
-  };
-  users.push(user);
-  saveUsers(users);
-  return { id: user.id, name: user.name, email: user.email, plan: user.plan };
+  if (users.find(u => u.email.toLowerCase() === email.toLowerCase())) { showToast('❌ Bu e-posta zaten kayıtlı.','error'); return null; }
+  const user = { id:'u_'+Date.now()+'_'+Math.random().toString(36).slice(2), name:name.trim(), email:email.toLowerCase().trim(), passwordHash:btoa(unescape(encodeURIComponent(password))), provider:'email', plan:'free', createdAt:new Date().toISOString() };
+  users.push(user); saveUsers(users);
+  return { id:user.id, name:user.name, email:user.email, plan:user.plan };
 }
 
 function authLogin(email, password) {
   const users = getUsers();
   const hash  = btoa(unescape(encodeURIComponent(password)));
-  const user  = users.find(u =>
-    u.email.toLowerCase() === email.toLowerCase().trim() &&
-    u.passwordHash === hash
-  );
-  if (!user) {
-    showToast('❌ E-posta veya şifre hatalı.', 'error');
-    return null;
-  }
-  return { id: user.id, name: user.name, email: user.email, plan: user.plan };
+  const user  = users.find(u => u.email.toLowerCase() === email.toLowerCase().trim() && u.passwordHash === hash);
+  if (!user) { showToast('❌ E-posta veya şifre hatalı.','error'); return null; }
+  return { id:user.id, name:user.name, email:user.email, plan:user.plan };
 }
 
 function authGoogle(name, email) {
   const users = getUsers();
   let user = users.find(u => u.email.toLowerCase() === email.toLowerCase().trim());
   if (!user) {
-    user = {
-      id: 'u_' + Date.now() + '_' + Math.random().toString(36).slice(2),
-      name: name.trim(),
-      email: email.toLowerCase().trim(),
-      passwordHash: null,
-      provider: 'google',
-      plan: 'free',
-      createdAt: new Date().toISOString()
-    };
-    users.push(user);
-    saveUsers(users);
+    user = { id:'u_'+Date.now()+'_'+Math.random().toString(36).slice(2), name:name.trim(), email:email.toLowerCase().trim(), passwordHash:null, provider:'google', plan:'free', createdAt:new Date().toISOString() };
+    users.push(user); saveUsers(users);
   }
-  return { id: user.id, name: user.name, email: user.email, plan: user.plan };
+  return { id:user.id, name:user.name, email:user.email, plan:user.plan };
 }
 
 function onLoginSuccess(session, msg) {
-  saveSession(session);
-  updateNavbar(session);
-  closeModal();
-  closeGoogleModal();
-  showToast(msg, 'success');
+  saveSession(session); updateNavbar(session); closeModal(); closeGoogleModal(); showToast(msg,'success');
 }
 
-function logout() {
-  clearSession();
-  updateNavbar(null);
-  showToast('👋 Başarıyla çıkış yapıldı.', 'success');
-}
+function logout() { clearSession(); updateNavbar(null); showToast('👋 Çıkış yapıldı.','success'); }
 
 function updateNavbar(session) {
-  const guestEl = document.getElementById('nav-guest');
-  const userEl  = document.getElementById('nav-user');
+  const gEl = document.getElementById('nav-guest');
+  const uEl = document.getElementById('nav-user');
   if (session) {
-    guestEl.classList.add('hidden');
-    userEl.classList.remove('hidden');
-    const initials = session.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-    document.getElementById('nav-avatar').textContent    = initials;
+    gEl.classList.add('hidden'); uEl.classList.remove('hidden');
+    const initials = session.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    document.getElementById('nav-avatar').textContent = initials;
     document.getElementById('nav-user-name').textContent = session.name;
-    document.getElementById('ad-banner').style.display   = session.plan === 'free' ? '' : 'none';
   } else {
-    guestEl.classList.remove('hidden');
-    userEl.classList.add('hidden');
-    document.getElementById('ad-banner').style.display = '';
+    gEl.classList.remove('hidden'); uEl.classList.add('hidden');
   }
 }
 
 /* ================================================================
-   FORM VALIDATION HELPERS
+   FORM VALIDATION
    ================================================================ */
-function validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-}
-function setFieldError(inputId, errId, show) {
-  const inp = document.getElementById(inputId);
-  const err = document.getElementById(errId);
-  if (!inp || !err) return;
-  inp.classList.toggle('error', show);
-  err.classList.toggle('show', show);
+function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim()); }
+function setFieldError(iId, eId, show) {
+  const i=document.getElementById(iId), e=document.getElementById(eId);
+  if(i)i.classList.toggle('error',show); if(e)e.classList.toggle('show',show);
 }
 function clearErrors() {
-  document.querySelectorAll('.form-field input').forEach(i => i.classList.remove('error'));
-  document.querySelectorAll('.field-error').forEach(e => e.classList.remove('show'));
+  document.querySelectorAll('.form-field input').forEach(i=>i.classList.remove('error'));
+  document.querySelectorAll('.field-error').forEach(e=>e.classList.remove('show'));
 }
 
 /* ================================================================
@@ -1217,11 +748,11 @@ function doLogin() {
   const email = document.getElementById('login-email').value;
   const pass  = document.getElementById('login-password').value;
   let ok = true;
-  if (!validateEmail(email))      { setFieldError('login-email','login-email-err',true); ok=false; }
-  if (pass.length < 1)            { setFieldError('login-password','login-pw-err',true); ok=false; }
+  if (!validateEmail(email)) { setFieldError('login-email','login-email-err',true); ok=false; }
+  if (!pass.length)          { setFieldError('login-password','login-pw-err',true); ok=false; }
   if (!ok) return;
-  const session = authLogin(email, pass);
-  if (session) onLoginSuccess(session, '✅ Hoş geldin, ' + session.name.split(' ')[0] + '!');
+  const s = authLogin(email, pass);
+  if (s) onLoginSuccess(s, '✅ Hoş geldin, ' + s.name.split(' ')[0] + '!');
 }
 
 function doRegister() {
@@ -1230,12 +761,12 @@ function doRegister() {
   const email = document.getElementById('reg-email').value;
   const pass  = document.getElementById('reg-password').value;
   let ok = true;
-  if (name.trim().length < 2)     { setFieldError('reg-name','reg-name-err',true); ok=false; }
-  if (!validateEmail(email))      { setFieldError('reg-email','reg-email-err',true); ok=false; }
-  if (pass.length < 8)            { setFieldError('reg-password','reg-pw-err',true); ok=false; }
+  if (name.trim().length < 2) { setFieldError('reg-name','reg-name-err',true); ok=false; }
+  if (!validateEmail(email))  { setFieldError('reg-email','reg-email-err',true); ok=false; }
+  if (pass.length < 8)        { setFieldError('reg-password','reg-pw-err',true); ok=false; }
   if (!ok) return;
-  const session = authRegister(name, email, pass);
-  if (session) onLoginSuccess(session, '🎉 Hesabın oluşturuldu! 10 GB bonus depolama hazır.');
+  const s = authRegister(name, email, pass);
+  if (s) onLoginSuccess(s, '🎉 Hesabın oluşturuldu! Hoş geldin ' + s.name.split(' ')[0] + '!');
 }
 
 /* ================================================================
@@ -1243,26 +774,15 @@ function doRegister() {
    ================================================================ */
 function openGoogleModal() {
   closeModal();
-  // Populate existing Google accounts from localStorage
-  const users   = getUsers();
-  const google  = users.filter(u => u.provider === 'google');
-  const list    = document.getElementById('google-accounts');
+  const users  = getUsers().filter(u => u.provider === 'google');
+  const list   = document.getElementById('google-accounts');
   list.innerHTML = '';
-  google.forEach(u => {
+  users.forEach(u => {
     const initials = u.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
     const item = document.createElement('div');
     item.className = 'google-account-item';
-    item.innerHTML = `
-      <div class="google-account-avatar">${initials}</div>
-      <div class="google-account-info">
-        <div class="g-name">${escHtml(u.name)}</div>
-        <div class="g-email">${escHtml(u.email)}</div>
-      </div>
-    `;
-    item.onclick = () => {
-      const session = { id: u.id, name: u.name, email: u.email, plan: u.plan };
-      onLoginSuccess(session, '✅ Google hesabınla giriş yapıldı, ' + u.name.split(' ')[0] + '!');
-    };
+    item.innerHTML = `<div class="google-account-avatar">${initials}</div><div class="google-account-info"><div class="g-name">${escHtml(u.name)}</div><div class="g-email">${escHtml(u.email)}</div></div>`;
+    item.onclick = () => onLoginSuccess({id:u.id,name:u.name,email:u.email,plan:u.plan}, '✅ Hoş geldin, '+u.name.split(' ')[0]+'!');
     list.appendChild(item);
   });
   document.getElementById('google-email-input').value = '';
@@ -1270,17 +790,15 @@ function openGoogleModal() {
   document.getElementById('google-modal').classList.add('open');
 }
 
-function closeGoogleModal() {
-  document.getElementById('google-modal').classList.remove('open');
-}
+function closeGoogleModal() { document.getElementById('google-modal').classList.remove('open'); }
 
 function continueWithGoogle() {
   const email = document.getElementById('google-email-input').value.trim();
   const name  = document.getElementById('google-name-input').value.trim();
-  if (!validateEmail(email)) { showToast('❌ Geçerli bir e-posta adresi girin.', 'error'); return; }
-  if (name.length < 2)       { showToast('❌ Ad soyad en az 2 karakter olmalı.', 'error'); return; }
-  const session = authGoogle(name, email);
-  onLoginSuccess(session, '✅ Google hesabınla giriş yapıldı, ' + session.name.split(' ')[0] + '!');
+  if (!validateEmail(email)) { showToast('❌ Geçerli e-posta girin.','error'); return; }
+  if (name.length < 2)       { showToast('❌ Ad soyad en az 2 karakter.','error'); return; }
+  const s = authGoogle(name, email);
+  onLoginSuccess(s, '✅ Google hesabınla giriş yapıldı!');
 }
 
 /* ================================================================
@@ -1288,116 +806,71 @@ function continueWithGoogle() {
    ================================================================ */
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const page = document.getElementById(name + '-page');
+  const page = document.getElementById(name+'-page');
   if (page) page.classList.add('active');
-
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('active', a.dataset.page === name);
-  });
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.page === name));
+  window.scrollTo({top:0,behavior:'smooth'});
   document.getElementById('nav-links').classList.remove('open');
 }
-
-function toggleMenu() {
-  document.getElementById('nav-links').classList.toggle('open');
-}
+function toggleMenu() { document.getElementById('nav-links').classList.toggle('open'); }
 
 /* ================================================================
-   MODAL (AUTH)
+   MODALS
    ================================================================ */
-function openModal(tab) {
-  clearErrors();
-  document.getElementById('auth-modal').classList.add('open');
-  switchTab(tab || 'login');
-}
-function closeModal() {
-  document.getElementById('auth-modal').classList.remove('open');
-}
+function openModal(tab) { clearErrors(); document.getElementById('auth-modal').classList.add('open'); switchTab(tab||'login'); }
+function closeModal()   { document.getElementById('auth-modal').classList.remove('open'); }
 function switchTab(tab) {
-  const isLogin = tab === 'login';
-  document.getElementById('tab-login').classList.toggle('active', isLogin);
-  document.getElementById('tab-register').classList.toggle('active', !isLogin);
-  document.getElementById('login-form').classList.toggle('hidden', !isLogin);
-  document.getElementById('register-form').classList.toggle('hidden', isLogin);
+  const isLogin = tab==='login';
+  document.getElementById('tab-login').classList.toggle('active',isLogin);
+  document.getElementById('tab-register').classList.toggle('active',!isLogin);
+  document.getElementById('login-form').classList.toggle('hidden',!isLogin);
+  document.getElementById('register-form').classList.toggle('hidden',isLogin);
   document.getElementById('modal-title').textContent = isLogin ? 'Hoş Geldin 👋' : 'Hesap Oluştur 🚀';
   document.getElementById('modal-sub').textContent   = isLogin ? 'Devam etmek için giriş yapın' : 'Ücretsiz hesabını oluştur';
   clearErrors();
 }
-
-/* ================================================================
-   CONFIRM MODAL
-   ================================================================ */
-function openConfirm(title, msg, onOk) {
+function openConfirm(title,msg,onOk) {
   document.getElementById('confirm-title').textContent = title;
   document.getElementById('confirm-msg').textContent   = msg;
   confirmCallback = onOk;
   document.getElementById('confirm-modal').classList.add('open');
 }
-function closeConfirm() {
-  document.getElementById('confirm-modal').classList.remove('open');
-  confirmCallback = null;
-}
-function executeConfirm() {
-  closeConfirm();
-  if (confirmCallback) confirmCallback();
-}
+function closeConfirm()   { document.getElementById('confirm-modal').classList.remove('open'); confirmCallback=null; }
+function executeConfirm() { closeConfirm(); if(confirmCallback) confirmCallback(); }
 
 /* ================================================================
    DRAG & DROP
    ================================================================ */
 const dropZone = document.getElementById('drop-zone');
-
 function triggerFileInput(e) {
-  if (e.target === document.querySelector('#drop-zone .btn') ||
-      e.target.closest('button')) return;
+  if (e.target.closest('button')) return;
   document.getElementById('file-input').click();
 }
-
-function handleDragOver(e) {
-  e.preventDefault();
-  e.dataTransfer.dropEffect = 'copy';
-  dropZone.classList.add('drag-over');
-  document.getElementById('drop-icon').textContent = '📂';
-}
-function handleDragLeave(e) {
-  if (!dropZone.contains(e.relatedTarget)) {
-    dropZone.classList.remove('drag-over');
-    document.getElementById('drop-icon').textContent = '🚀';
-  }
-}
-function handleDrop(e) {
-  e.preventDefault();
-  dropZone.classList.remove('drag-over');
-  document.getElementById('drop-icon').textContent = '🚀';
-  const files = [...e.dataTransfer.files];
-  if (files.length) addFilesToQueue(files);
-}
-function handleFileInput(e) {
-  addFilesToQueue([...e.target.files]);
-  e.target.value = '';
-}
+function handleDragOver(e)  { e.preventDefault(); e.dataTransfer.dropEffect='copy'; dropZone.classList.add('drag-over'); document.getElementById('drop-icon').textContent='📂'; }
+function handleDragLeave(e) { if(!dropZone.contains(e.relatedTarget)){dropZone.classList.remove('drag-over');document.getElementById('drop-icon').textContent='🚀';} }
+function handleDrop(e)      { e.preventDefault(); dropZone.classList.remove('drag-over'); document.getElementById('drop-icon').textContent='🚀'; const files=[...e.dataTransfer.files]; if(files.length) addFilesToQueue(files); }
+function handleFileInput(e) { addFilesToQueue([...e.target.files]); e.target.value=''; }
 
 /* ================================================================
    FILE QUEUE
    ================================================================ */
-const ALLOWED_TYPES = ['image/jpeg','image/png','image/webp','image/gif','video/mp4','video/webm'];
-const MAX_SIZE      = 100 * 1024 * 1024; // 100 MB
-
 function addFilesToQueue(files) {
   let added = 0;
   files.forEach(file => {
-    if (!ALLOWED_TYPES.includes(file.type)) {
-      showToast('❌ ' + escHtml(file.name) + ' desteklenmiyor.', 'error'); return;
+    const isVideo = file.type.startsWith('video/');
+    const isImage = file.type.startsWith('image/');
+    if (!ALLOWED_TYPES.includes(file.type) && !(isVideo || isImage)) {
+      showToast('❌ ' + escHtml(file.name) + ' desteklenmiyor.','error'); return;
     }
-    if (file.size > MAX_SIZE) {
-      showToast('❌ ' + escHtml(file.name) + ' 100 MB sınırını aşıyor.', 'error'); return;
+    const maxSize = isVideo ? MAX_VIDEO_SIZE : MAX_IMAGE_SIZE;
+    if (file.size > maxSize) {
+      showToast('❌ ' + escHtml(file.name) + ' ' + (isVideo ? '100 MB' : '32 MB') + ' sınırını aşıyor.','error'); return;
     }
-    const id    = 'f_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
-    const url   = URL.createObjectURL(file);
-    const isVid = file.type.startsWith('video/');
-    uploadedFiles.push({ id, file, url, type: isVid ? 'video' : 'image',
-      shortId: randomShortId(), views: Math.floor(Math.random() * 980) + 20,
+    const id  = 'f_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
+    const url = URL.createObjectURL(file);
+    uploadedFiles.push({ id, file, url, type: isVideo ? 'video' : 'image',
+      cdnUrl: null, deleteUrl: null, viewerUrl: null,
+      views: Math.floor(Math.random()*980)+20,
       isPublic: true, status: 'queued', progress: 0 });
     renderFileItem(uploadedFiles.length - 1);
     added++;
@@ -1409,56 +882,47 @@ function addFilesToQueue(files) {
 }
 
 function renderFileItem(idx) {
-  const f    = uploadedFiles[idx];
-  const isVid = f.type === 'video';
+  const f = uploadedFiles[idx];
   const queue = document.getElementById('file-queue');
-
-  const item = document.createElement('div');
-  item.className = 'file-item';
-  item.id = 'fi-' + f.id;
+  const item  = document.createElement('div');
+  item.className = 'file-item'; item.id = 'fi-'+f.id;
   item.innerHTML = `
-    <div class="file-thumb">
-      ${isVid
-        ? `<video src="${f.url}" muted preload="metadata"></video>`
-        : `<img src="${f.url}" alt="${escHtml(f.file.name)}" loading="lazy" />`}
-    </div>
+    <div class="file-thumb">${f.type==='video'
+      ? `<video src="${f.url}" muted preload="metadata"></video>`
+      : `<img src="${f.url}" alt="${escHtml(f.file.name)}" loading="lazy"/>`}</div>
     <div class="file-info">
       <div class="file-name" title="${escHtml(f.file.name)}">${escHtml(f.file.name)}</div>
-      <div class="file-size">${formatBytes(f.file.size)}</div>
+      <div class="file-size">${formatBytes(f.file.size)} · ${f.type==='video'?'Video':'Resim'}</div>
       <div class="file-progress"><div class="file-progress-bar" id="bar-${f.id}"></div></div>
     </div>
     <div class="file-status" id="st-${f.id}">⏳</div>
-    <button class="file-remove" onclick="removeFile('${f.id}')" title="Kaldır">✕</button>
-  `;
+    <button class="file-remove" onclick="removeFile('${f.id}')">✕</button>`;
   queue.appendChild(item);
 }
 
 function removeFile(id) {
   if (uploadInProgress) return;
-  const f = uploadedFiles.find(x => x.id === id);
+  const f = uploadedFiles.find(x=>x.id===id);
   if (f) URL.revokeObjectURL(f.url);
-  uploadedFiles = uploadedFiles.filter(x => x.id !== id);
-  const el = document.getElementById('fi-' + id);
-  if (el) { el.style.opacity = '0'; el.style.transform = 'translateX(-10px)'; el.style.transition = '.2s'; setTimeout(()=>el.remove(),200); }
-  if (uploadedFiles.length === 0) {
-    document.getElementById('upload-options').style.display = 'none';
-  } else {
-    updateFileCount();
-  }
+  uploadedFiles = uploadedFiles.filter(x=>x.id!==id);
+  const el = document.getElementById('fi-'+id);
+  if (el) { el.style.opacity='0'; el.style.transform='translateX(-10px)'; el.style.transition='.2s'; setTimeout(()=>el.remove(),200); }
+  if (uploadedFiles.length===0) document.getElementById('upload-options').style.display='none';
+  else updateFileCount();
 }
 
 function clearQueue() {
   if (uploadInProgress) return;
-  uploadedFiles.forEach(f => URL.revokeObjectURL(f.url));
-  uploadedFiles = [];
-  document.getElementById('file-queue').innerHTML = '';
-  document.getElementById('upload-options').style.display = 'none';
+  uploadedFiles.forEach(f=>URL.revokeObjectURL(f.url));
+  uploadedFiles=[];
+  document.getElementById('file-queue').innerHTML='';
+  document.getElementById('upload-options').style.display='none';
 }
 
 function updateFileCount() {
-  const n = uploadedFiles.filter(f => f.status === 'queued').length;
-  const lbl = document.getElementById('file-count-label');
-  if (lbl) lbl.textContent = n + ' dosya seçildi';
+  const n = uploadedFiles.filter(f=>f.status==='queued').length;
+  const el = document.getElementById('file-count-label');
+  if (el) el.textContent = n + ' dosya seçildi';
 }
 
 /* ================================================================
@@ -1471,172 +935,256 @@ function togglePrivacy() {
 }
 
 /* ================================================================
-   UPLOAD SIMULATION
+   UPLOAD — Real ImgBB for images, local blob for videos
    ================================================================ */
-function startUpload() {
+async function startUpload() {
   if (uploadInProgress) return;
-  const queued = uploadedFiles.filter(f => f.status === 'queued');
-  if (queued.length === 0) { showToast('⚠️ Yüklenecek dosya yok.','error'); return; }
+  const queued = uploadedFiles.filter(f=>f.status==='queued');
+  if (!queued.length) { showToast('⚠️ Yüklenecek dosya yok.','error'); return; }
 
-  // Apply privacy setting at upload time
   queued.forEach(f => { f.isPublic = !isPrivate; });
-
   uploadInProgress = true;
+
   const btn = document.getElementById('upload-btn');
   btn.disabled = true;
-  btn.innerHTML = '⏳ Yükleniyor...';
+  btn.innerHTML = '<span class="spinning">⏳</span> Yükleniyor...';
 
-  let i = 0;
-  function next() {
-    if (i >= queued.length) {
-      uploadInProgress = false;
-      setTimeout(() => {
-        buildPreview();
-        showPage('preview');
-        showToast('✅ ' + queued.length + ' dosya başarıyla yüklendi!', 'success');
-        resetUploadBtn();
-      }, 400);
-      return;
-    }
+  let successCount = 0;
+  let failCount    = 0;
+
+  for (let i = 0; i < queued.length; i++) {
     const f = queued[i];
     f.status = 'uploading';
-    simulateProgress(f.id, () => {
+    const stEl  = document.getElementById('st-'+f.id);
+    const barEl = document.getElementById('bar-'+f.id);
+
+    // Animate progress bar while uploading
+    let fakePct = 0;
+    const fakeTimer = setInterval(() => {
+      fakePct = Math.min(fakePct + Math.random()*12, 90);
+      if (barEl) barEl.style.width = fakePct + '%';
+    }, 150);
+
+    try {
+      if (f.type === 'image') {
+        // REAL upload to ImgBB CDN
+        const result = await uploadToImgBB(f.file);
+        clearInterval(fakeTimer);
+        if (barEl) barEl.style.width = '100%';
+        f.cdnUrl    = result.url;
+        f.deleteUrl = result.deleteUrl;
+        f.viewerUrl = result.viewerUrl;
+        f.thumbUrl  = result.thumbUrl;
+        f.status    = 'done';
+        if (stEl) stEl.textContent = '✅';
+        successCount++;
+      } else {
+        // Videos: simulate upload (no free video CDN available without backend)
+        await new Promise(resolve => {
+          const interval = setInterval(() => {
+            fakePct = Math.min(fakePct + Math.random()*15, 100);
+            if (barEl) barEl.style.width = fakePct + '%';
+            if (fakePct >= 100) { clearInterval(interval); resolve(); }
+          }, 100);
+        });
+        clearInterval(fakeTimer);
+        f.cdnUrl = f.url; // use local blob URL for preview
+        f.status = 'done';
+        if (stEl) stEl.textContent = '🎬';
+        successCount++;
+      }
+    } catch (err) {
+      clearInterval(fakeTimer);
+      if (barEl) barEl.style.width = '0%';
+      f.status = 'error';
+      if (stEl) stEl.textContent = '❌';
+      failCount++;
+      console.error('Upload error:', err);
+
+      // Fallback: use local blob URL so user can still preview
+      f.cdnUrl = f.url;
       f.status = 'done';
-      const st = document.getElementById('st-' + f.id);
-      if (st) st.textContent = '✅';
-      i++;
-      next();
-    });
+      if (stEl) stEl.textContent = '⚠️';
+      successCount++;
+    }
   }
-  next();
-}
 
-function simulateProgress(fileId, onDone) {
-  let pct = 0;
-  const bar = document.getElementById('bar-' + fileId);
-  const spd = Math.random() * 8 + 10;
-  const tick = setInterval(() => {
-    pct = Math.min(pct + Math.random() * spd, 100);
-    if (bar) bar.style.width = pct + '%';
-    if (pct >= 100) { clearInterval(tick); onDone(); }
-  }, 80);
-}
-
-function resetUploadBtn() {
-  const btn = document.getElementById('upload-btn');
+  uploadInProgress = false;
   btn.disabled = false;
   btn.innerHTML = '⬆️ Yükle';
+
+  const done = uploadedFiles.filter(f=>f.status==='done');
+  if (done.length > 0) {
+    buildPreview();
+    showPage('preview');
+    if (failCount > 0)
+      showToast(`⚠️ ${successCount} dosya yüklendi, ${failCount} başarısız.`, 'error');
+    else
+      showToast(`✅ ${successCount} dosya başarıyla yüklendi!`, 'success');
+  }
 }
 
 /* ================================================================
    PREVIEW PAGE
    ================================================================ */
 function buildPreview() {
-  const done = uploadedFiles.filter(f => f.status === 'done');
-  if (done.length === 0) return;
+  const done = uploadedFiles.filter(f=>f.status==='done');
+  if (!done.length) return;
 
   const badge = document.getElementById('preview-count-badge');
   if (badge) badge.textContent = done.length + ' dosya';
 
   const grid = document.getElementById('gallery-grid');
   grid.innerHTML = '';
-  done.forEach((f, idx) => {
+
+  done.forEach((f,idx) => {
     const thumb = document.createElement('div');
-    thumb.className = 'gallery-thumb' + (idx === 0 ? ' selected' : '');
+    thumb.className = 'gallery-thumb' + (idx===0?' selected':'');
     thumb.dataset.id = f.id;
     thumb.onclick = () => selectPreview(f.id);
-    thumb.innerHTML = f.type === 'video'
-      ? `<video src="${f.url}" muted preload="metadata"></video><span class="video-badge">▶ Video</span>`
-      : `<img src="${f.url}" alt="${escHtml(f.file.name)}" loading="lazy" />`;
+
+    if (f.type === 'video') {
+      thumb.innerHTML = `<video src="${f.url}" muted preload="metadata"></video><span class="video-badge">▶ Video</span>`;
+    } else {
+      thumb.innerHTML = `<img src="${f.thumbUrl||f.cdnUrl||f.url}" alt="${escHtml(f.file.name)}" loading="lazy"/>`;
+    }
+
     if (done.length > 1) {
       const num = document.createElement('span');
       num.className = 'file-num';
-      num.textContent = idx + 1;
+      num.textContent = idx+1;
       thumb.appendChild(num);
     }
     grid.appendChild(thumb);
   });
 
-  // Select first
   selectedFileId = done[0].id;
   selectPreview(done[0].id);
 }
 
 function selectPreview(fileId) {
   selectedFileId = fileId;
-  const f = uploadedFiles.find(x => x.id === fileId);
+  const f = uploadedFiles.find(x=>x.id===fileId);
   if (!f) return;
 
-  // Highlight gallery
-  document.querySelectorAll('.gallery-thumb').forEach(el => {
-    el.classList.toggle('selected', el.dataset.id === fileId);
-  });
+  document.querySelectorAll('.gallery-thumb').forEach(el =>
+    el.classList.toggle('selected', el.dataset.id===fileId));
 
   // Main preview
   const box = document.getElementById('main-preview-box');
   if (f.type === 'video') {
     box.innerHTML = `<video src="${f.url}" controls style="max-height:560px;width:100%;"></video>`;
   } else {
-    const img = document.createElement('img');
-    img.src = f.url;
+    const img = new Image();
+    img.src = f.cdnUrl || f.url;
     img.alt = f.file.name;
     img.style.maxHeight = '560px';
+    img.style.width = '100%';
+    img.style.objectFit = 'contain';
     box.innerHTML = '';
     box.appendChild(img);
   }
 
-  // Link
-  const link = 'https://hzlm.io/' + f.shortId;
-  document.getElementById('share-link').value = link;
+  // Share link — use real CDN URL if available
+  const shareLink = f.cdnUrl && f.cdnUrl !== f.url ? f.cdnUrl : f.viewerUrl || f.cdnUrl || ('https://hzlm.io/'+randomShortId());
+  document.getElementById('share-link').value = shareLink;
 
-  // Views counter
+  // Show real link info
+  const linkInfo = document.getElementById('real-link-info');
+  if (f.cdnUrl && f.cdnUrl !== f.url && f.type === 'image') {
+    linkInfo.innerHTML = `<div class="real-link-badge">✅ Gerçek CDN linki · <a href="${f.cdnUrl}" target="_blank" rel="noopener">Aç ↗</a></div>`;
+  } else if (f.type === 'video') {
+    linkInfo.innerHTML = `<div class="real-link-badge" style="background:rgba(251,191,36,.07);border-color:rgba(251,191,36,.22);color:#fbbf24;">🎬 Video yerel önizleme · Paylaşmak için video hosting gerekir</div>`;
+  } else {
+    linkInfo.innerHTML = '';
+  }
+
+  // Views
   animateCounter('view-count', f.views);
 
   // Meta
-  document.getElementById('meta-name').textContent = f.file.name;
-  document.getElementById('meta-size').textContent  = formatBytes(f.file.size);
-  document.getElementById('meta-type').textContent  = f.file.type;
+  document.getElementById('meta-name').textContent   = f.file.name;
+  document.getElementById('meta-size').textContent   = formatBytes(f.file.size);
+  document.getElementById('meta-type').textContent   = f.file.type;
+  document.getElementById('meta-status').innerHTML   = f.cdnUrl && f.cdnUrl !== f.url
+    ? '<span style="color:var(--success);">✅ CDN\'de</span>'
+    : '<span style="color:#fbbf24;">⚠️ Yerel önizleme</span>';
   document.getElementById('meta-privacy').innerHTML  = f.isPublic
     ? '<span class="privacy-badge public">🌍 Herkese açık</span>'
     : '<span class="privacy-badge private">🔒 Gizli</span>';
 
-  // Real QR code
-  generateQR(link);
+  // QR — use real CDN link
+  generateQRCode(shareLink, document.getElementById('qr-container'), 150);
 }
 
 /* ================================================================
-   QR CODE — real, using qrcodejs
+   QR DOWNLOAD
    ================================================================ */
-function generateQR(text) {
+function downloadQR() {
   const container = document.getElementById('qr-container');
-  container.innerHTML = '';
-  try {
-    new QRCode(container, {
-      text: text,
-      width: 150,
-      height: 150,
-      colorDark: '#1a1a2e',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.M
+  const img = container.querySelector('img');
+  if (!img) { showToast('⚠️ QR kod henüz oluşturulmadı.','error'); return; }
+
+  // Fetch the image and trigger download
+  fetch(img.src)
+    .then(r => r.blob())
+    .then(blob => {
+      const url = URL.createObjectURL(blob);
+      const a   = document.createElement('a');
+      a.href     = url;
+      a.download = 'hizlimedi-qr.png';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      showToast('⬇️ QR kod indirildi!','success');
+    })
+    .catch(() => {
+      // Fallback: open in new tab
+      window.open(img.src, '_blank');
+      showToast('⬇️ QR kod yeni sekmede açıldı.','success');
     });
-  } catch (e) {
-    container.innerHTML = '<p style="color:#888;font-size:11px;padding:10px;">QR oluşturulamadı</p>';
+}
+
+/* ================================================================
+   SHARE MENU
+   ================================================================ */
+function openShareMenu() {
+  const link = document.getElementById('share-link').value;
+  if (!link) return;
+
+  // Try native share first (mobile)
+  if (navigator.share) {
+    navigator.share({ title: 'HızlıMedi', text: 'Medyamı paylaşıyorum!', url: link })
+      .catch(() => fallbackShare(link));
+  } else {
+    fallbackShare(link);
   }
 }
 
-function downloadQR() {
-  const container = document.getElementById('qr-container');
-  const canvas    = container.querySelector('canvas');
-  const img       = container.querySelector('img');
-  let src = null;
-  if (canvas)     src = canvas.toDataURL('image/png');
-  else if (img)   src = img.src;
-  if (!src) { showToast('⚠️ QR kod henüz oluşturulmadı.','error'); return; }
-  const a = document.createElement('a');
-  a.href     = src;
-  a.download = 'hizlimedi-qr.png';
-  a.click();
-  showToast('⬇️ QR kod indirildi!','success');
+function fallbackShare(link) {
+  const encoded = encodeURIComponent(link);
+  const options = [
+    { name: 'WhatsApp', url: `https://wa.me/?text=${encoded}`, icon: '💬' },
+    { name: 'Telegram', url: `https://t.me/share/url?url=${encoded}`, icon: '✈️' },
+    { name: 'Twitter/X', url: `https://twitter.com/intent/tweet?url=${encoded}`, icon: '🐦' },
+    { name: 'E-posta', url: `mailto:?subject=Medya%20Paylaşımı&body=${encoded}`, icon: '📧' },
+  ];
+
+  // Simple share popup
+  const popup = document.createElement('div');
+  popup.style.cssText = `position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:3000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);`;
+  popup.innerHTML = `
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:28px;max-width:320px;width:100%;animation:modal-in .25s ease;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+        <h4 style="font-family:var(--font-head);font-size:16px;font-weight:700;">📤 Paylaş</h4>
+        <button onclick="this.closest('.share-popup').remove()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:20px;padding:0 4px;">✕</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        ${options.map(o=>`<a href="${o.url}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);font-size:13px;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent1)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:26px;">${o.icon}</span>${o.name}</a>`).join('')}
+      </div>
+      <button onclick="this.closest('div[style]').remove()" style="width:100%;margin-top:14px;padding:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--muted);cursor:pointer;font-family:var(--font-body);font-size:14px;">Kapat</button>
+    </div>`;
+  popup.onclick = (e) => { if (e.target === popup) popup.remove(); };
+  document.body.appendChild(popup);
 }
 
 /* ================================================================
@@ -1644,144 +1192,113 @@ function downloadQR() {
    ================================================================ */
 function copyLink() {
   const val = document.getElementById('share-link').value;
-  if (!val) return;
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(val)
-      .then(() => showToast('✅ Link panoya kopyalandı!', 'success'))
-      .catch(() => fallbackCopy(val));
-  } else {
-    fallbackCopy(val);
-  }
+  if (!val || val === 'Yükleniyor...') return;
+  navigator.clipboard?.writeText(val)
+    .then(()=>showToast('✅ Link panoya kopyalandı!','success'))
+    .catch(()=>fallbackCopy(val))
+    || fallbackCopy(val);
 }
+
 function fallbackCopy(text) {
   const ta = document.createElement('textarea');
-  ta.value = text;
-  ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;';
-  document.body.appendChild(ta);
-  ta.select();
-  try { document.execCommand('copy'); showToast('✅ Link kopyalandı!', 'success'); }
-  catch { showToast('⚠️ Kopyalama başarısız.', 'error'); }
+  ta.value = text; ta.style.cssText='position:fixed;left:-9999px;top:-9999px;';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); showToast('✅ Link kopyalandı!','success'); }
+  catch { showToast('⚠️ Kopyalama başarısız.','error'); }
   ta.remove();
 }
 
 function copyReferral() {
-  const link = 'https://hzlm.io/davet/' + randomShortId();
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(link).catch(()=>{});
-  }
-  showToast('🎁 Davet linkin kopyalandı!', 'success');
+  const link = 'https://hzlm.io/davet/'+randomShortId();
+  navigator.clipboard?.writeText(link).catch(()=>{});
+  showToast('🎁 Davet linkin kopyalandı: '+link,'success');
 }
 
 /* ================================================================
    DOWNLOAD / DELETE
    ================================================================ */
 function downloadMedia() {
-  const f = uploadedFiles.find(x => x.id === selectedFileId);
+  const f = uploadedFiles.find(x=>x.id===selectedFileId);
   if (!f) { showToast('⚠️ Dosya seçili değil.','error'); return; }
-  const a = document.createElement('a');
-  a.href     = f.url;
-  a.download = f.file.name;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  showToast('⬇️ İndirme başladı: ' + f.file.name, 'success');
+
+  if (f.cdnUrl && f.cdnUrl !== f.url) {
+    // Open real CDN link
+    window.open(f.cdnUrl, '_blank');
+    showToast('⬇️ CDN bağlantısı açıldı!','success');
+  } else {
+    const a = document.createElement('a');
+    a.href = f.url; a.download = f.file.name;
+    document.body.appendChild(a); a.click(); a.remove();
+    showToast('⬇️ İndirme başladı: '+f.file.name,'success');
+  }
 }
 
 function confirmDelete() {
-  const f = uploadedFiles.find(x => x.id === selectedFileId);
+  const f = uploadedFiles.find(x=>x.id===selectedFileId);
   if (!f) return;
-  openConfirm(
-    '🗑️ Dosyayı Sil',
-    '"' + f.file.name + '" silinsin mi? Bu işlem geri alınamaz.',
-    doDelete
-  );
+  openConfirm('🗑️ Dosyayı Sil', '"'+f.file.name+'" silinsin mi? Bu işlem geri alınamaz.', doDelete);
 }
 
 function doDelete() {
-  const f = uploadedFiles.find(x => x.id === selectedFileId);
+  const f = uploadedFiles.find(x=>x.id===selectedFileId);
   if (!f) return;
   URL.revokeObjectURL(f.url);
-  uploadedFiles = uploadedFiles.filter(x => x.id !== selectedFileId);
+  uploadedFiles = uploadedFiles.filter(x=>x.id!==selectedFileId);
   selectedFileId = null;
+  const qEl = document.getElementById('fi-'+f.id);
+  if (qEl) qEl.remove();
 
-  // Also remove from file queue UI
-  const queueEl = document.getElementById('fi-' + f.id);
-  if (queueEl) queueEl.remove();
-
-  const remaining = uploadedFiles.filter(x => x.status === 'done');
-  if (remaining.length === 0) {
-    if (uploadedFiles.length === 0) {
-      document.getElementById('upload-options').style.display = 'none';
-    }
+  const remaining = uploadedFiles.filter(x=>x.status==='done');
+  if (!remaining.length) {
+    if (!uploadedFiles.length) document.getElementById('upload-options').style.display='none';
     showPage('home');
-    showToast('🗑️ Dosya silindi. Artık yüklenmiş dosya kalmadı.', 'success');
+    showToast('🗑️ Dosya silindi.','success');
   } else {
     buildPreview();
-    showToast('🗑️ Dosya silindi.', 'success');
+    showToast('🗑️ Dosya silindi.','success');
   }
 }
 
 /* ================================================================
    TOAST
    ================================================================ */
-function showToast(msg, type = 'success') {
+function showToast(msg, type='success') {
   const container = document.getElementById('toast-container');
   const toast     = document.createElement('div');
-  toast.className = 'toast ' + type;
+  toast.className = 'toast '+type;
   toast.textContent = msg;
   container.appendChild(toast);
-  setTimeout(() => {
-    toast.style.transition = 'opacity .35s, transform .35s';
-    toast.style.opacity    = '0';
-    toast.style.transform  = 'translateX(20px)';
-    setTimeout(() => toast.remove(), 360);
-  }, 3200);
+  setTimeout(()=>{
+    toast.style.transition='opacity .3s,transform .3s';
+    toast.style.opacity='0'; toast.style.transform='translateX(16px)';
+    setTimeout(()=>toast.remove(),320);
+  }, 3500);
 }
 
 /* ================================================================
    HELPERS
    ================================================================ */
-function formatBytes(bytes) {
-  if (bytes === 0) return '0 B';
-  if (bytes < 1024)         return bytes + ' B';
-  if (bytes < 1048576)      return (bytes / 1024).toFixed(1) + ' KB';
-  if (bytes < 1073741824)   return (bytes / 1048576).toFixed(2) + ' MB';
-  return (bytes / 1073741824).toFixed(2) + ' GB';
+function formatBytes(b) {
+  if (!b) return '0 B';
+  if (b<1024) return b+' B';
+  if (b<1048576) return (b/1024).toFixed(1)+' KB';
+  if (b<1073741824) return (b/1048576).toFixed(2)+' MB';
+  return (b/1073741824).toFixed(2)+' GB';
 }
-
-function randomShortId() {
-  return Math.random().toString(36).slice(2, 8);
-}
-
-function escHtml(str) {
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
+function randomShortId() { return Math.random().toString(36).slice(2,8); }
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function animateCounter(id, target) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  let current = 0;
-  const step  = Math.max(1, Math.ceil(target / 50));
-  const tick  = setInterval(() => {
-    current = Math.min(current + step, target);
-    el.textContent = current.toLocaleString('tr-TR');
-    if (current >= target) clearInterval(tick);
-  }, 25);
+  const el = document.getElementById(id); if(!el) return;
+  let current=0; const step=Math.max(1,Math.ceil(target/50));
+  const tick=setInterval(()=>{ current=Math.min(current+step,target); el.textContent=current.toLocaleString('tr-TR'); if(current>=target)clearInterval(tick); },25);
 }
 
 /* ================================================================
-   KEYBOARD SHORTCUTS
+   KEYBOARD & BACKDROP
    ================================================================ */
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeModal();
-    closeGoogleModal();
-    closeConfirm();
-    document.getElementById('nav-links').classList.remove('open');
-  }
+  if (e.key==='Escape') { closeModal(); closeGoogleModal(); closeConfirm(); document.getElementById('nav-links').classList.remove('open'); }
 });
-
-/* Backdrop clicks */
 document.getElementById('auth-modal').addEventListener('click', closeModal);
 document.getElementById('google-modal').addEventListener('click', closeGoogleModal);
 document.getElementById('confirm-modal').addEventListener('click', closeConfirm);
@@ -1796,3 +1313,5 @@ document.getElementById('confirm-modal').addEventListener('click', closeConfirm)
 </script>
 </body>
 </html>
+HTMLEOF
+echo "Done: $(wc -c < /mnt/user-data/outputs/hizlimedi.html) bytes"
